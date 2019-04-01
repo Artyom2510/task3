@@ -65,8 +65,7 @@
 			<div class="meeting-rooms__title rent-negotiation-title">Переговорные комнаты</div>
 			<div class="meeting-rooms__card">
 				<a class="meeting-rooms__img-block" href="#">
-					<div class="meeting-rooms__img"><img src="location.png" alt="Location">
-					</div>
+					<img src="location.png" alt="Location">
 					<div class="meeting-rooms__img-label">Ленинградский проспект, вл.36, к.5</div>
 				</a>
 				<div class="meeting-rooms__info">
@@ -142,8 +141,7 @@
 			</div>
 			<div class="meeting-rooms__card">
 				<a class="meeting-rooms__img-block" href="#">
-					<div class="meeting-rooms__img"><img src="location.png" alt="Location">
-					</div>
+					<img src="location.png" alt="Location">
 					<div class="meeting-rooms__img-label">Ленинградский проспект, вл.36, к.5</div>
 				</a>
 				<div class="meeting-rooms__info">
@@ -219,8 +217,7 @@
 			</div>
 			<div class="meeting-rooms__card">
 				<a class="meeting-rooms__img-block" href="#">
-					<div class="meeting-rooms__img"><img src="location.png" alt="Location">
-					</div>
+					<img src="location.png" alt="Location">
 					<div class="meeting-rooms__img-label">Ленинградский проспект, вл.36, к.5</div>
 				</a>
 				<div class="meeting-rooms__info">
@@ -337,21 +334,25 @@
 			</div>
 		</div>
 	</section>
-	<section>
+	<section class="popup">
 		<div class="meeting-rooms-form">
 			<h2 class="meeting-rooms-form__title">Выбор времени и даты</h2>
 			<p class="meeting-rooms-form__desc">
 				Арендовать переговорную можно на полчаса и более. Вы можете указать несколько временных диапазонов.
 			</p>
-			<div class="meeting-rooms-form__settings form-settings">
-				<span class="form-settings__label">Начало аренды</span>
-				<span class="form-settings__time">13:00</span>
+			<div class="meeting-rooms-form__settings_wrap">
+				<div class="meeting-rooms-form__settings form-settings">
+						<span class="form-settings__label">Начало аренды</span>
+						<span class="form-settings__time">13:00</span>
+					</div>
+					<div class="meeting-rooms-form__settings form-settings">
+						<span class="form-settings__label">Количество часов</span>
+						<span class="form-settings__time">1 час</span>
+					</div>
+				</div>
+				<button class="btn btn-gray">Отменить</button>
+				<button class="btn btn-gray">Все правильно</button>
 			</div>
-			<div class="meeting-rooms-form__settings form-settings">
-				<span class="form-settings__label">Количество часов</span>
-				<span class="form-settings__time">1 час</span>
-			</div>
-		</div>
 	</section>
 </body>
 
