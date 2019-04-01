@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="utf-8">
+
+	<title>Sok</title>
+	<meta name="description" content="">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!--	<meta name="google-site-verification" content="" />-->
+	<!--	<meta name="yandex-verification" content="" />-->
+
+	<meta property="og:image" content="path/to/image.jpg">
+
+	<!-- <link rel="shortcut icon" href="img/favicon/favicon.png" type="image/png">
+	<link rel="apple-touch-icon" href="img/favicon/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="img/favicon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="img/favicon/apple-touch-icon-114x114.png"> -->
+
+	<!-- Цвет мобильного браузера -->
+	<!--	<meta name="theme-color" content="#000">-->
+	<!--	<meta name="msapplication-navbutton-color" content="#000">-->
+	<!--	<meta name="apple-mobile-web-app-status-bar-style" content="#000">-->
+	<!-- <link rel="stylesheet" href="js/sok/malihu-custom-scrollbar-plugin-master/jquery.mCustomScrollbar.min.css"> -->
+	<link rel="stylesheet" href="main.css">
+	<!-- 
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/common.js"></script> -->
+</head>
+
+<body>
+	<section class="rent-negotiation">
+		<img src="rent-negotiation.jpg" alt="">
+		<h1 class="rent-negotiation__title rent-negotiation-title">Арендуйте переговорную комнату в SOK</h1>
+	</section>
+	<section class="select-negotiation">
+		<div class="select-negotiation__select">
+			<span class="select-negotiation__title">Переговорная</span>
+			<div class="select">
+				<span class="select__value" title="Динамо">Динамо</span>
+				<button class="select__arrow" type="button"></button>
+			</div>
+		</div>
+		<div class="select-negotiation__select">
+			<span class="select-negotiation__title">Дата</span>
+			<div class="select">
+				<span class="select__value" title="Сегодня, 26 марта 2019">Сегодня, 26 марта 2019</span>
+				<button class="select__arrow" type="button"></button>
+			</div>
+		</div>
+		<div class="select-negotiation__select">
+			<span class="select-negotiation__title">Кол-во человек</span>
+			<div class="select">
+				<span class="select__value" title="4 человека">4 человека</span>
+				<button class="select__arrow" type="button"></button>
+				<input class="select__input js-people-from" type="hidden" value="10 человек">
+			</div>
+		</div>
+	</section>
+	<section class="meeting-rooms">
+		<div class="meeting-rooms__left">
+			<div class="meeting-rooms__title rent-negotiation-title">Переговорные комнаты</div>
+			<div class="meeting-rooms__card">
+				<a class="meeting-rooms__img-block" href="#">
+					<div class="meeting-rooms__img"><img src="location.png" alt="Location">
+					</div>
+					<div class="meeting-rooms__img-label">Ленинградский проспект, вл.36, к.5</div>
+				</a>
+				<div class="meeting-rooms__info">
+					<span class="meeting-rooms__name">Динамо</span>
+					<p class="meeting-rooms__desc">6 посадочных мест, общий стол, флипчарт с маркерами.</p>
+					<div class="meeting-rooms__price-list">
+						<span class="meeting-rooms__variant">Офис</span>
+						<span class="meeting-rooms__price">18 000 руб.</span>
+					</div>
+					<div class="meeting-rooms__price-list">
+						<span class="meeting-rooms__variant">Закрепленное рабочее место</span>
+						<span class="meeting-rooms__price">24 000 руб.</span>
+					</div>
+				</div>
+			</div>
+			<div class="meeting-rooms__wrap">
+				<div class="meeting-rooms__label-time">
+					<span class="meeting-rooms__period">00:00</span>
+					<span class="meeting-rooms__period">01:00</span>
+					<span class="meeting-rooms__period">02:00</span>
+					<span class="meeting-rooms__period">03:00</span>
+					<span class="meeting-rooms__period">04:00</span>
+					<span class="meeting-rooms__period">05:00</span>
+					<span class="meeting-rooms__period">06:00</span>
+					<span class="meeting-rooms__period">07:00</span>
+					<span class="meeting-rooms__period">08:00</span>
+					<span class="meeting-rooms__period">09:00</span>
+					<span class="meeting-rooms__period">10:00</span>
+					<span class="meeting-rooms__period">11:00</span>
+					<span class="meeting-rooms__period">12:00</span>
+					<span class="meeting-rooms__period">13:00</span>
+					<span class="meeting-rooms__period">14:00</span>
+					<span class="meeting-rooms__period">15:00</span>
+					<span class="meeting-rooms__period">16:00</span>
+					<span class="meeting-rooms__period">17:00</span>
+					<span class="meeting-rooms__period">18:00</span>
+					<span class="meeting-rooms__period">19:00</span>
+					<span class="meeting-rooms__period">20:00</span>
+					<span class="meeting-rooms__period">21:00</span>
+					<span class="meeting-rooms__period">22:00</span>
+					<span class="meeting-rooms__period">23:00</span>
+				</div>
+				<div class="timeline">
+					<span class="timeline__left"></span>
+					<span class="timeline__right"></span>
+				</div>
+				<div class="date-block">
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block hour-block_hold"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block hour-block_hold"></span>
+					<span class="hour-block hour-block_hold"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+				</div>
+			</div>
+			<div class="meeting-rooms__card">
+				<a class="meeting-rooms__img-block" href="#">
+					<div class="meeting-rooms__img"><img src="location.png" alt="Location">
+					</div>
+					<div class="meeting-rooms__img-label">Ленинградский проспект, вл.36, к.5</div>
+				</a>
+				<div class="meeting-rooms__info">
+					<span class="meeting-rooms__name">Динамо</span>
+					<p class="meeting-rooms__desc">6 посадочных мест, общий стол, флипчарт с маркерами.</p>
+					<div class="meeting-rooms__price-list">
+						<span class="meeting-rooms__variant">Офис</span>
+						<span class="meeting-rooms__price">18 000 руб.</span>
+					</div>
+					<div class="meeting-rooms__price-list">
+						<span class="meeting-rooms__variant">Закрепленное рабочее место</span>
+						<span class="meeting-rooms__price">24 000 руб.</span>
+					</div>
+				</div>
+			</div>
+			<div class="meeting-rooms__wrap">
+				<div class="meeting-rooms__label-time">
+					<span class="meeting-rooms__period">00:00</span>
+					<span class="meeting-rooms__period">01:00</span>
+					<span class="meeting-rooms__period">02:00</span>
+					<span class="meeting-rooms__period">03:00</span>
+					<span class="meeting-rooms__period">04:00</span>
+					<span class="meeting-rooms__period">05:00</span>
+					<span class="meeting-rooms__period">06:00</span>
+					<span class="meeting-rooms__period">07:00</span>
+					<span class="meeting-rooms__period">08:00</span>
+					<span class="meeting-rooms__period">09:00</span>
+					<span class="meeting-rooms__period">10:00</span>
+					<span class="meeting-rooms__period">11:00</span>
+					<span class="meeting-rooms__period">12:00</span>
+					<span class="meeting-rooms__period">13:00</span>
+					<span class="meeting-rooms__period">14:00</span>
+					<span class="meeting-rooms__period">15:00</span>
+					<span class="meeting-rooms__period">16:00</span>
+					<span class="meeting-rooms__period">17:00</span>
+					<span class="meeting-rooms__period">18:00</span>
+					<span class="meeting-rooms__period">19:00</span>
+					<span class="meeting-rooms__period">20:00</span>
+					<span class="meeting-rooms__period">21:00</span>
+					<span class="meeting-rooms__period">22:00</span>
+					<span class="meeting-rooms__period">23:00</span>
+				</div>
+				<div class="timeline">
+					<span class="timeline__left"></span>
+					<span class="timeline__right"></span>
+				</div>
+				<div class="date-block">
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block hour-block_hold"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block hour-block_hold"></span>
+					<span class="hour-block hour-block_hold"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+				</div>
+			</div>
+			<div class="meeting-rooms__card">
+				<a class="meeting-rooms__img-block" href="#">
+					<div class="meeting-rooms__img"><img src="location.png" alt="Location">
+					</div>
+					<div class="meeting-rooms__img-label">Ленинградский проспект, вл.36, к.5</div>
+				</a>
+				<div class="meeting-rooms__info">
+					<span class="meeting-rooms__name">Динамо</span>
+					<p class="meeting-rooms__desc">6 посадочных мест, общий стол, флипчарт с маркерами.</p>
+					<div class="meeting-rooms__price-list">
+						<span class="meeting-rooms__variant">Офис</span>
+						<span class="meeting-rooms__price">18 000 руб.</span>
+					</div>
+					<div class="meeting-rooms__price-list">
+						<span class="meeting-rooms__variant">Закрепленное рабочее место</span>
+						<span class="meeting-rooms__price">24 000 руб.</span>
+					</div>
+				</div>
+			</div>
+			<div class="meeting-rooms__wrap">
+				<div class="meeting-rooms__label-time">
+					<span class="meeting-rooms__period">00:00</span>
+					<span class="meeting-rooms__period">01:00</span>
+					<span class="meeting-rooms__period">02:00</span>
+					<span class="meeting-rooms__period">03:00</span>
+					<span class="meeting-rooms__period">04:00</span>
+					<span class="meeting-rooms__period">05:00</span>
+					<span class="meeting-rooms__period">06:00</span>
+					<span class="meeting-rooms__period">07:00</span>
+					<span class="meeting-rooms__period">08:00</span>
+					<span class="meeting-rooms__period">09:00</span>
+					<span class="meeting-rooms__period">10:00</span>
+					<span class="meeting-rooms__period">11:00</span>
+					<span class="meeting-rooms__period">12:00</span>
+					<span class="meeting-rooms__period">13:00</span>
+					<span class="meeting-rooms__period">14:00</span>
+					<span class="meeting-rooms__period">15:00</span>
+					<span class="meeting-rooms__period">16:00</span>
+					<span class="meeting-rooms__period">17:00</span>
+					<span class="meeting-rooms__period">18:00</span>
+					<span class="meeting-rooms__period">19:00</span>
+					<span class="meeting-rooms__period">20:00</span>
+					<span class="meeting-rooms__period">21:00</span>
+					<span class="meeting-rooms__period">22:00</span>
+					<span class="meeting-rooms__period">23:00</span>
+				</div>
+				<div class="timeline">
+					<span class="timeline__left"></span>
+					<span class="timeline__right"></span>
+				</div>
+				<div class="date-block">
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block hour-block_hold"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block hour-block_hold"></span>
+					<span class="hour-block hour-block_hold"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+					<span class="hour-block"></span>
+				</div>
+			</div>
+		</div>
+		<div class="meeting-rooms__right">
+			<p class="meeting-rooms__hint">
+				Выберите локацию, дату, укажите необходимое кол-во человек, отметьте подходящее вам свободное.<br>Резиденты SOK могут забронировать переговорную по специальным ценам.
+			</p>
+			<div class="meeting-rooms__right-card right-card">
+				<h2 class="right-card__title">Бронивание</h2>
+				<div class="right-card__block">
+					<div class="right-card__field">
+						<span>Переговорная</span>
+						<span>Динамо</span>
+					</div>
+					<div class="right-card__field">
+						<span>Начало аренды</span>
+						<span>26 марта 2019, 18:00</span>
+					</div>
+					<div class="right-card__field">
+						<span>Окончание аренды</span>
+						<span>26 марта 2019, 18:00</span>
+					</div>
+				</div>
+				<div class="right-card__block">
+					<div class="right-card__field">
+						<span>Переговорная</span>
+						<span>Динамо</span>
+					</div>
+					<div class="right-card__field">
+						<span>Начало аренды</span>
+						<span>26 марта 2019, 18:00</span>
+					</div>
+					<div class="right-card__field">
+						<span>Окончание аренды</span>
+						<span>26 марта 2019, 18:00</span>
+					</div>
+				</div>
+				<div class="right-card__to-pay">
+					<span>К оплате</span>
+					<span>10 500 руб.</span>
+				</div>
+				<button class="btn btn-gray">Перейти к офрмлению</button>
+			</div>
+		</div>
+	</section>
+	<section>
+		<div class="meeting-rooms-form">
+			<h2 class="meeting-rooms-form__title">Выбор времени и даты</h2>
+			<p class="meeting-rooms-form__desc">
+				Арендовать переговорную можно на полчаса и более. Вы можете указать несколько временных диапазонов.
+			</p>
+			<div class="meeting-rooms-form__settings form-settings">
+				<span class="form-settings__label">Начало аренды</span>
+				<span class="form-settings__time">13:00</span>
+			</div>
+			<div class="meeting-rooms-form__settings form-settings">
+				<span class="form-settings__label">Количество часов</span>
+				<span class="form-settings__time">1 час</span>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>
