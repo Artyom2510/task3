@@ -330,29 +330,42 @@
 					<span>К оплате</span>
 					<span>10 500 руб.</span>
 				</div>
-				<button class="btn btn-gray">Перейти к офрмлению</button>
+				<button class="btn gray-btn">Перейти к офрмлению</button>
 			</div>
 		</div>
 	</section>
-	<section class="popup">
-		<div class="meeting-rooms-form">
+	<section>
+		<form class="meeting-rooms-form">
 			<h2 class="meeting-rooms-form__title">Выбор времени и даты</h2>
 			<p class="meeting-rooms-form__desc">
 				Арендовать переговорную можно на полчаса и более. Вы можете указать несколько временных диапазонов.
 			</p>
-			<div class="meeting-rooms-form__settings_wrap">
+			<div class="meeting-rooms-form__settings-wrap">
 				<div class="meeting-rooms-form__settings form-settings">
-						<span class="form-settings__label">Начало аренды</span>
-						<span class="form-settings__time">13:00</span>
-					</div>
-					<div class="meeting-rooms-form__settings form-settings">
-						<span class="form-settings__label">Количество часов</span>
-						<span class="form-settings__time">1 час</span>
+					<label for="aa" class="form-settings__label">Начало аренды</label>
+					<div class="form-settings__select">
+						<input type="select" class="form-settings__time form-settings-input" id="aa" value="13:00">
+						<button class="select__arrow" type="button"></button>
 					</div>
 				</div>
-				<button class="btn btn-gray">Отменить</button>
-				<button class="btn btn-gray">Все правильно</button>
+				<div class="meeting-rooms-form__settings form-settings">
+					<label for="ww" class="form-settings__label">Количество часов</label>
+					<div class="form-settings__input-count">
+					<button class="form-settings__count-minus count-plus-minus" type="button">
+						<img src="input-plus.svg" alt="">
+					</button>
+					<input type="number" class="form-settings__hour form-settings-input" id="ww" value="1">
+						<button class="form-settings__count-plus count-plus-minus" type="button">
+							<img src="input-minus.svg" alt="">
+						</button>
+					</div>
+				</div>
 			</div>
+			<div class="form-settings__btn-block">
+				<button class="form-settings__btn btn gray-btn">Отменить</button>
+				<button class="form-settings__btn btn gray-btn">Все правильно</button>
+			</div>
+		</form>
 	</section>
 </body>
 
