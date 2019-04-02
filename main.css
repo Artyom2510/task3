@@ -344,7 +344,7 @@ input[type="number"]::-webkit-inner-spin-button {
 .meeting-rooms__variant {
 	width: 56%;
 }
-.meeting-rooms__wrap {
+.timeline {
 	position: relative;
 	display: block;
 	width: 100%;
@@ -352,14 +352,14 @@ input[type="number"]::-webkit-inner-spin-button {
 	overflow-x: scroll;
 	margin-bottom: 50px;
 }
-.meeting-rooms__wrap:last-child {
+.timeline:last-child {
 	margin-bottom: 0;
 }
-.meeting-rooms__label-time {
+.timeline__labels {
 	position: relative;
 	display: flex;
 }
-.meeting-rooms__period {
+.timeline__label {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -373,14 +373,14 @@ input[type="number"]::-webkit-inner-spin-button {
 	font-size: 12px;
 	box-sizing: border-box;
 }
-.meeting-rooms__period:nth-child(even) {
+.timeline__label:nth-child(even) {
 	border-left: none;
 	border-right: none;
 }
-.meeting-rooms__period:last-child {
+.timeline__label:last-child {
 	border-right: solid 1px #979797;
 }
-.timeline {
+.timeline__sequence {
 	position: absolute;
 	z-index: 1;
 	bottom: 0;
@@ -391,8 +391,8 @@ input[type="number"]::-webkit-inner-spin-button {
 	background-color: #5ad085;
 	cursor: pointer;
 }
-.timeline__left,
-.timeline__right {
+.timeline__sequence-handle-start,
+.timeline__sequence-handle-end {
 	position: absolute;
 	z-index: 2;
 	top: 0;
@@ -401,10 +401,10 @@ input[type="number"]::-webkit-inner-spin-button {
 	height: 100%;
 	cursor: ew-resize;
 }
-.timeline__left::before,
-.timeline__left::after,
-.timeline__right::before,
-.timeline__right::after  {
+.timeline__sequence-handle-start::before,
+.timeline__sequence-handle-start::after,
+.timeline__sequence-handle-end::before,
+.timeline__sequence-handle-end::after  {
 	content: '';
 	position: absolute;
 	z-index: 3;
@@ -415,24 +415,24 @@ input[type="number"]::-webkit-inner-spin-button {
 	height: 8px;
 	background-color: #fff;
 }
-.timeline__left::before,
-.timeline__right::before {
+.timeline__sequence-handle-start::before,
+.timeline__sequence-handle-end::before {
 	left: 3px;
 }
-.timeline__left::after,
-.timeline__right::after {
+.timeline__sequence-handle-start::after,
+.timeline__sequence-handle-end::after {
 	right: 3px;
 }
-.timeline__left {
+.timeline__sequence-handle-start {
 	left: 0;
 }
-.timeline__right {
+.timeline__sequence-handle-end {
 	right: 0;
 }
-.date-block {
+.timeline__halves {
 	display: flex;
 }
-.hour-block {
+.timeline__half {
 	display: flex;
 	flex-shrink: 0;
 	width: 60px;
@@ -444,20 +444,20 @@ input[type="number"]::-webkit-inner-spin-button {
 	border-top: none;
 	box-sizing: border-box;
 }
-.hour-block:hover {
+.timeline__half:hover {
 	background-color: rgba(90, 208, 133, 0.5);
 }
-.hour-block:nth-child(even) {
+.timeline__half:nth-child(even) {
 	border-left: none;
 	border-right: none;
 }
-.hour-block:last-child {
+.timeline__half:last-child {
 	border-right: solid 1px #979797;
 }
-.hour-block_hold {
+.timeline__half_hold {
 	background: repeating-linear-gradient(45deg, #b4b4b4, #b4b4b4 2%, #f3f3f3 2%, #f3f3f3 5%);
 }
-.hour-block_hold:hover {
+.timeline__half_hold:hover {
 	cursor: not-allowed;
 }
 .meeting-rooms__right {
