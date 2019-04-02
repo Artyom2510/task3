@@ -1,0 +1,555 @@
+p, h1, h2, h3, h4, form
+	margin: 0
+
+body
+	margin: 0
+	padding: 0
+	color: #434343
+	font-family: 'Lato'
+
+section
+	line-height: 0
+
+.btn
+	display: inline-block
+	box-sizing: border-box
+	font-family: "Latobold"
+	min-height: 44px
+	padding: 13px 45px
+	font-size: 14px
+	line-height: 1
+	border-radius: 23px
+	text-decoration: none
+	text-align: center
+	color: #434343
+	margin: 0 15px
+	border: 2px solid transparent
+	cursor: pointer
+	outline: none !important
+	transition: all 0.3s ease
+
+.gray-btn
+	background: #434343
+	color: #fff
+	&:hover
+		border: 2px solid #434343
+		color: #434343
+		background: transparent
+
+input
+	&[type="number"],
+	&::-webkit-input-placeholder,
+	&::-moz-placeholder,
+	&:-ms-input-placeholder,
+	&:-moz-placeholder
+		font-size: 16px
+		color: #434343
+		font-family: "LatoBold"
+	&[type="number"]
+		&::-webkit-outer-spin-button, &::-webkit-inner-spin-button
+			-webkit-appearance: none
+			margin: 0
+
+.rent-negotiation
+	position: relative
+	img
+		width: 100%
+		max-height: 500px
+		min-height: 320px
+		height: 100%
+		object-fit: cover
+		object-position: 50% 50%
+	&__title
+		position: absolute
+		left: 50px
+		top: 50%
+		transform: translateY(-50%)
+		color: #fff
+
+@media (max-width: 767px)
+	.rent-negotiation
+		&__title
+			left: 15px
+
+.rent-negotiation-title
+	display: block
+	font-size: 42px
+	line-height: 44px
+	font-weight: 900
+
+@media (max-width: 767px)
+	.rent-negotiation-title
+		font-size: 36px
+		line-height: 38px
+
+.select-negotiation
+	display: flex
+	justify-content: center
+	align-items: center
+	padding: 50px 20px
+	background-color: #d5e0fb
+	&__select
+		display: block
+		width: 240px
+		margin-right: 60px
+		&:last-child
+			margin-right: 0
+	&__title
+		display: inline-block
+		margin-bottom: 18px
+		font-size: 12px
+		line-height: 15px
+		color: #434343
+
+@media (max-width: 1000px)
+	.select-negotiation
+		flex-wrap: wrap
+		&__select
+			width: 100%
+			margin-bottom: 20px
+			margin-right: 0
+			&:last-child
+				margin-bottom: 0
+
+@media (max-width: 767px)
+	.select-negotiation
+		padding-left: 15px
+		padding-right: 15px
+
+.select
+	position: relative
+	z-index: 1
+	display: inline-block
+	width: 100%
+	min-width: 240px
+	padding-bottom: 4px
+	border-bottom: 2px solid #434343
+	background-color: transparent
+	cursor: pointer
+	&:first-child
+		margin-right: 34px
+	&__arrow
+		position: absolute
+		z-index: 2
+		top: 0px
+		right: -3px
+		width: 20px
+		height: 20px
+		padding: 0
+		margin: 0
+		outline: none !important
+		border: none
+		cursor: pointer
+		background-color: transparent
+		&::before
+			content: ''
+			position: absolute
+			z-index: 3
+			display: block
+			width: 7px
+			height: 7px
+			top: 10px
+			left: 10px
+			border-bottom: 3px solid #434343
+			border-left: 3px solid #434343
+			transform: translate(-50%, -50%) rotate(-45deg)
+	&__value
+		width: 100%
+		font-weight: 600
+		font-size: 16px
+		line-height: 19px
+		overflow: hidden
+		white-space: nowrap
+		text-overflow: ellipsis
+	&__list
+		position: absolute
+		top: calc(100% + 2px)
+		left: 0
+		display: none
+		width: 100%
+		background-color: #fff
+	&__item
+		display: block
+		margin: 0
+		padding: 8px 10px
+		font-size: 15px
+		line-height: 17px
+		font-weight: 600
+		cursor: pointer
+		list-style: none
+		&:hover,
+		&:focus
+			background-color: #e8e8e8
+		label
+			display: inline-block
+			width: calc(100% - 10px)
+
+.select.open
+	z-index: 11
+	.select__list
+		display: block
+
+@media (max-width: 767px)
+	.select
+		width: 100%
+
+.meeting-rooms
+	display: flex
+	background-color: #fff
+	&__left
+		width: 50%
+		padding: 90px 50px 50px
+		box-sizing: border-box
+		background-color: #fff8da
+	&__title
+		margin-bottom: 55px
+	&__card-top
+		display: flex
+	&__card
+		display: block
+		width: 100%
+		margin-bottom: 50px
+		&:last-child
+			margin-bottom: 0
+	&__img-block
+		position: relative
+		display: block
+		width: 310px
+		cursor: pointer
+		text-decoration: none
+		transition: all .3s ease
+		&:hover
+			text-decoration: none
+			.meeting-rooms__img-label
+				background-color: #fff
+				color: #434343
+		img
+			width: 100%
+			height: 100%
+			min-height: 230px
+			object-fit: cover
+			object-position: 50% 50%
+	&__img-label
+		position: absolute
+		bottom: 0
+		left: 0
+		display: block
+		width: 100%
+		padding: 12px 20px 13px
+		font-size: 12px
+		line-height: 15px
+		font-weight: bold
+		box-sizing: border-box
+		background-color: #434343
+		color: #fff
+	&__info
+		display: block
+		width: 390px
+		padding: 15px 30px 20px
+		background-color: #fff
+		box-sizing: border-box
+	&__name
+		display: block
+		padding-bottom: 16px
+		margin-bottom: 15px
+		border-bottom: 2px solid #434343
+		font-size: 20px
+		line-height: 24px
+		font-weight: 900
+	&__desc
+		display: block
+		margin-bottom: 80px
+		font-size: 16px
+		line-height: 24px
+	&__price-list
+		display: flex
+		justify-content: space-between
+		align-items: center
+		margin-bottom: 15px
+		&:last-child
+			margin-bottom: 0
+		span
+			display: inline-block
+			font-size: 12px
+			line-height: 15px
+	&__variant
+		width: 56%
+	&__right
+		width: 50%
+		padding: 90px 50px 50px
+		box-sizing: border-box
+	&__hint
+		display: block
+		font-size: 16px
+		line-height: 24px
+	&__right-card
+		position: sticky
+		top: 0
+		width: 100%
+
+@media (max-width: 1000px)
+	.meeting-rooms
+		&__left,
+		&__right
+			padding-left: 30px
+			padding-right: 30px
+		&__card-top
+			flex-wrap: wrap
+		&__img-block
+			width: 100%
+		&__info
+			padding-left: 15px
+			padding-right: 15px
+			width: 100%
+
+@media (max-width: 767px)
+	.meeting-rooms
+		flex-wrap: wrap
+		&__right,
+		&__left
+			padding-left: 15px
+			padding-right: 15px
+			width: 100%
+		&__right-card
+			position: relative
+
+.timeline
+	position: relative
+	display: block
+	width: 100%
+	max-width: 700px
+	overflow-x: scroll
+	&__labels
+		position: relative
+		display: flex
+	&__label
+		display: inline-flex
+		align-items: center
+		justify-content: center
+		flex-shrink: 0
+		width: 60px
+		height: 30px
+		padding: 0 10px
+		background-color: #fff
+		border: solid 1px #979797
+		border-bottom: none
+		font-size: 12px
+		box-sizing: border-box
+		&:nth-child(even)
+			border-left: none
+			border-right: none
+		&:last-child
+			border-right: solid 1px #979797
+	&__sequence
+		position: absolute
+		z-index: 1
+		bottom: 0
+		display: block
+		width: 60px
+		height: 50px
+		overflow: hidden
+		background-color: #5ad085
+		cursor: pointer
+	&__sequence-handle-start,
+	&__sequence-handle-end
+		position: absolute
+		z-index: 2
+		top: 0
+		display: block
+		width: 10px
+		height: 100%
+		cursor: ew-resize
+		&::before,
+		&::after
+			content: ''
+			position: absolute
+			z-index: 3
+			top: 50%
+			transform: translateY(-50%)
+			display: inline-block
+			width: 1px
+			height: 8px
+			background-color: #fff
+		&::before
+			left: 3px
+		&::after
+			right: 3px
+	&__sequence-handle-start
+		left: 0
+	&__sequence-handle-end
+		right: 0
+	&__halves
+		display: flex
+	&__half
+		display: flex
+		flex-shrink: 0
+		width: 60px
+		height: 50px
+		border: solid 1px #979797
+		background-color: #f3f3f3
+		cursor: pointer
+		transition: all .3s ease
+		border-top: none
+		box-sizing: border-box
+		&:hover
+			background-color: rgba(90, 208, 133, 0.5)
+		&:nth-child(even)
+			border-left: none
+			border-right: none
+		&:last-child
+			border-right: solid 1px #979797
+		&_hold
+			background: repeating-linear-gradient(45deg, #b4b4b4, #b4b4b4 2%, #f3f3f3 2%, #f3f3f3 5%)
+			cursor: not-allowed
+
+.right-card
+	display: block
+	padding: 40px 50px 60px
+	box-sizing: border-box
+	background-color: #f3f3f3
+	&__title
+		display: block
+		font-size: 32px
+		line-height: 44px
+		font-weight: 600
+		margin-bottom: 26px
+	&__block
+		display: block
+		padding-bottom: 25px
+		margin-bottom: 20px
+		border-bottom: 1px solid #434343
+		&:last-child
+			margin-bottom: 30px
+	&__field
+		display: flex
+		justify-content: space-between
+		flex-wrap: wrap
+		margin-bottom: 16px
+		&:last-child
+			margin-bottom: 0
+		span
+			display: inline-block
+			min-width: 165px
+			font-size: 16px
+			line-height: 24px
+			color: #434343
+			&:first-child
+				max-width: 400px
+			&:last-child
+				font-weight: bold
+	&__to-pay
+		display: flex
+		margin-bottom: 30px
+		span
+			display: inline-block
+			font-size: 16px
+			line-height: 24px
+			&:first-child
+				margin-right: 16px
+			&:last-child
+				font-weight: bold
+
+@media (max-width: 1000px)
+	.right-card
+		padding-left: 30px
+		padding-right: 30px
+
+
+.meeting-rooms-form
+	display: block
+	width: 640px
+	padding: 40px 50px
+	background-color: #ffe9b8
+	box-sizing: border-box
+	&__title
+		display: block
+		margin-bottom: 26px
+		font-size: 32px
+		line-height: 44px
+		font-weight: 600
+	&__desc
+		display: block
+		font-size: 16px
+		line-height: 30px
+		font-weight: 600
+		margin-bottom: 32px
+	&__settings-wrap
+		display: flex
+		justify-content: space-between
+		margin-bottom: 66px
+	&__settings
+		display: block
+		width: 240px
+		&:first-child
+			margin-right: 20px
+
+@media (max-width: 767px)
+	.meeting-rooms-form
+		width: 100%
+		padding: 25px 30px
+		&__settings-wrap
+			flex-wrap: wrap
+		&__settings:first-child
+			margin-right: 0px
+			margin-bottom: 20px
+
+.form-settings
+	&__label
+		display: inline-block
+		width: 100%
+		margin-bottom: 18px
+		font-size: 12px
+		line-height: 15px
+		cursor: pointer
+	&__select
+		position: relative
+	&__input-count
+		display: flex
+		justify-content: center
+	&__count-plus
+		margin-left: 10px
+	&__count-minus
+		margin-right: 10px
+	&__time
+		text-align: left
+	&__hour
+		text-align: center
+		max-width: 188px
+	&__btn-block
+		display: flex
+		justify-content: space-between
+	&__btn
+		min-width: 240px
+		margin: 0
+
+.count-plus-minus
+	display: flex
+	align-items: center
+	justify-content: center
+	width: 16px
+	height: 16px
+	border: none
+	outline: none !important
+	background-color: transparent
+	cursor: pointer
+
+.form-settings-input
+	display: inline-block
+	width: 100%
+	padding-bottom: 3px
+	font-size: 16px
+	line-height: 19px
+	font-weight: 600
+	background-color: transparent
+	box-sizing: border-box
+	border: none
+	outline: none !important
+	border-bottom: 2px solid #434343
+
+@media (max-width: 767px)
+	.form-settings
+		&__btn-block
+			flex-wrap: wrap
+		&__btn
+			&:first-child
+				margin-bottom: 20px
