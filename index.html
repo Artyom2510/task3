@@ -40,7 +40,7 @@
 		<div class="select-negotiation__select">
 			<span class="select-negotiation__title">Переговорная</span>
 			<div class="select">
-				<span class="select__value" title="Динамо">Динамо</span>
+				<input type="select" value="Динамо" class="select__input">
 				<button class="select__arrow" type="button"></button>
 			</div>
 		</div>
@@ -54,9 +54,9 @@
 		<div class="select-negotiation__select">
 			<span class="select-negotiation__title">Кол-во человек</span>
 			<div class="select">
-				<span class="select__value" title="4 человека">4 человека</span>
+				<!-- <span class="select__value" title="4 человека">4 человека</span> -->
 				<button class="select__arrow" type="button"></button>
-				<input class="select__input js-people-from" type="hidden" value="10 человек">
+				<input class="select__input" type="select" value="10 человек">
 			</div>
 		</div>
 	</section>
@@ -303,7 +303,7 @@
 				Выберите локацию, дату, укажите необходимое кол-во человек, отметьте подходящее вам свободное.<br>Резиденты SOK могут забронировать переговорную по специальным ценам.
 			</p>
 			<div class="meeting-rooms__right-card right-card">
-				<h2 class="right-card__title">Бронивание</h2>
+				<h2 class="right-card__title">Бронирование</h2>
 				<div class="right-card__block">
 					<div class="right-card__field">
 						<span>Переговорная</span>
@@ -336,43 +336,47 @@
 					<span>К оплате</span>
 					<span>10 500 руб.</span>
 				</div>
-				<button class="btn gray-btn">Перейти к офрмлению</button>
+				<button class="btn gray-btn">Перейти к оформлению</button>
 			</div>
 		</div>
 	</section>
-	<section>
-		<form class="meeting-rooms-form">
-			<h2 class="meeting-rooms-form__title">Выбор времени и даты</h2>
-			<p class="meeting-rooms-form__desc">
-				Арендовать переговорную можно на полчаса и более. Вы можете указать несколько временных диапазонов.
-			</p>
-			<div class="meeting-rooms-form__settings-wrap">
-				<div class="meeting-rooms-form__settings form-settings">
-					<label for="aa" class="form-settings__label">Начало аренды</label>
-					<div class="form-settings__select">
-						<input type="select" class="form-settings__time form-settings-input" id="aa" value="13:00">
-						<button class="select__arrow" type="button"></button>
+	<div class="meeting-rooms-form-popup">
+		<div class="meeting-rooms-form-popup__bg"></div>
+		<div class="meeting-rooms-form-popup__wrap">
+			<buttom type="button" class="meeting-rooms-form-popup__close"></buttom>
+			<form class="meeting-rooms-form">
+				<h2 class="meeting-rooms-form__title">Выбор времени и даты</h2>
+				<p class="meeting-rooms-form__desc">
+					Арендовать переговорную можно на полчаса и более. Вы можете указать несколько временных диапазонов.
+				</p>
+				<div class="meeting-rooms-form__settings-wrap">
+					<div class="meeting-rooms-form__settings form-settings">
+						<label for="aa" class="form-settings__label">Начало аренды</label>
+						<div class="form-settings__select">
+							<input type="select" class="form-settings__time form-settings-input" id="aa" value="13:00">
+							<button class="select__arrow" type="button"></button>
+						</div>
 					</div>
-				</div>
-				<div class="meeting-rooms-form__settings form-settings">
-					<label for="ww" class="form-settings__label">Количество часов</label>
-					<div class="form-settings__input-count">
-					<button class="form-settings__count-minus count-plus-minus" type="button">
-						<img src="input-plus.svg" alt="">
-					</button>
-					<input type="number" class="form-settings__hour form-settings-input" id="ww" value="1">
-						<button class="form-settings__count-plus count-plus-minus" type="button">
-							<img src="input-minus.svg" alt="">
+					<div class="meeting-rooms-form__settings form-settings">
+						<label for="ww" class="form-settings__label">Количество часов</label>
+						<div class="form-settings__input-count">
+						<button class="form-settings__count-minus count-plus-minus" type="button">
+							<img src="input-plus.svg" alt="">
 						</button>
+						<input type="number" class="form-settings__hour form-settings-input" id="ww" value="1">
+							<button class="form-settings__count-plus count-plus-minus" type="button">
+								<img src="input-minus.svg" alt="">
+							</button>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="form-settings__btn-block">
-				<button class="form-settings__btn btn gray-btn">Отменить</button>
-				<button class="form-settings__btn btn gray-btn">Все правильно</button>
-			</div>
-		</form>
-	</section>
+				<div class="form-settings__btn-block">
+					<button class="form-settings__btn btn gray-btn">Отменить</button>
+					<button class="form-settings__btn btn gray-btn">Все правильно</button>
+				</div>
+			</form>
+		</div>
+	</div>
 </body>
 
 </html>
