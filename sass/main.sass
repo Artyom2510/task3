@@ -98,6 +98,7 @@ input
 		top: calc(100% - 2px)
 		left: 0
 		width: 100%
+		max-height: 25vh
 		overflow: auto
 		margin: 0
 		padding: 8px 0px
@@ -502,7 +503,6 @@ input
 .meeting-rooms-form
 	display: block
 	width: 640px
-	margin: 0 auto
 	padding: 40px 50px
 	background-color: #ffe9b8
 	box-sizing: border-box
@@ -534,6 +534,7 @@ input
 		padding: 25px 30px
 		&__settings-wrap
 			flex-wrap: wrap
+			margin-bottom: 36px
 		&__settings:first-child
 			margin-right: 0px
 			margin-bottom: 20px
@@ -565,6 +566,7 @@ input
 		justify-content: space-between
 	&__btn
 		min-width: 240px
+		height: 44px
 		margin: 0
 
 .count-plus-minus
@@ -604,8 +606,8 @@ input
 	z-index: 2
 	top: 0
 	left: 0
-	// display: none
-	// opacity: 0
+	display: none
+	opacity: 0
 	align-items: center
 	justify-content: center
 	width: 100%
@@ -660,3 +662,9 @@ input
 				transform: translate(-50%, -50%) rotate(45deg) scale(1.1)
 			&::after
 				transform: translate(-50%, -50%) rotate(-45deg) scale(1.1)
+
+@media(max-width: 767px)
+	.meeting-rooms-form-popup
+		&__close
+			right: 2px
+			top: 20px
