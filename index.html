@@ -24,11 +24,15 @@
 	<!--	<meta name="theme-color" content="#000">-->
 	<!--	<meta name="msapplication-navbutton-color" content="#000">-->
 	<!--	<meta name="apple-mobile-web-app-status-bar-style" content="#000">-->
-	<!-- <link rel="stylesheet" href="js/sok/malihu-custom-scrollbar-plugin-master/jquery.mCustomScrollbar.min.css"> -->
+	<link rel="stylesheet" href="css/jquery-ui.min.css">
+	<link rel="stylesheet" href="css/jquery-ui.structure.min.css">
+	<link rel="stylesheet" href="css/jquery-ui.theme.min.css">
 	<link rel="stylesheet" href="css/main.css">
-	<!-- 
+	
 	<script src="js/jquery-3.2.1.min.js"></script>
-	<script src="js/common.js"></script> -->
+	<script src="js/jquery-ui.min.js"></script>
+	<script src="js/jquery.smoothscroll.js"></script>
+	<script src="js/common.js"></script>
 </head>
 
 <body>
@@ -64,32 +68,14 @@
 				</li>
 			</ul>
 		</div>
-		<div class="select-negotiation__select form-wraper formselect-radio">
-			<span class="form-wraper__label">Переговорная</span>
-			<div class="form-wraper__box formselect-radio__value form-box" title="Динамо">
-					<span>Динамо</span>
+		<div class="select-negotiation__select form-wraper">
+			<span class="form-wraper__label">Дата</span>
+			<div class="form-wraper__box formselect-radio__value form-box">
+				<span>Сегодня, 26 марта 2019</span>
+				<input type="text" id="datepicker" class="hasDatepicker">
 			</div>
 			<button type="button" class="form-wraper__button formselect-radio__arrow">
 			</button>
-			<input type="hidden" name="room_category" class="form-wraper__input" value="7">
-			<ul class="formselect-radio__list">
-				<li class="formselect-radio__item">
-					<input type="radio" id="category-room-7" value="7" name="category-room">
-					<label for="category-room-7">Переговорная2</label>
-				</li>
-				<li class="formselect-radio__item">
-					<input type="radio" id="category-room-19" value="19" name="category-room">
-					<label for="category-room-19">Переговорная3</label>
-				</li>
-				<li class="formselect-radio__item">
-					<input type="radio" id="category-room-20" value="20" name="category-room">
-					<label for="category-room-20">Переговорная4</label>
-				</li>
-				<li class="formselect-radio__item">
-					<input type="radio" id="category-room-21" value="21" name="category-room">
-					<label for="category-room-21">Переговорная5</label>
-				</li>
-			</ul>
 		</div>
 		<div class="select-negotiation__select form-wraper formselect-radio">
 			<span class="form-wraper__label">Кол-во человек</span>
@@ -399,6 +385,9 @@
 			</div>
 		</div>
 	</section>
+	<!-- Calendar -->
+
+	<!-- Popup -->
 	<div class="meeting-rooms-form-popup">
 		<div class="meeting-rooms-form-popup__bg"></div>
 		<div class="meeting-rooms-form-popup__wrap">
@@ -476,4 +465,5 @@
 	</div>
 </body>
 
+<div class="datepicker"></div>
 </html>

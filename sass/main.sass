@@ -1,3 +1,33 @@
+@charset "UTF-8"
+@font-face 
+	font-family: "Lato"
+	src: url("../fonts/LatoRegular.eot?#iefix") format("embedded-opentype"), url("../fonts/LatoRegular.woff") format("woff"), url("../fonts/LatoRegular.ttf") format("truetype")
+	font-weight: 400
+
+@font-face 
+	font-family: "LatoBlack"
+	src: url("../fonts/LatoBlack.eot?#iefix") format("embedded-opentype"), url("../fonts/LatoBlack.woff") format("woff"), url("../fonts/LatoBlack.ttf") format("truetype")
+	font-weight: 900
+
+@font-face 
+	font-family: "LatoBold"
+	src: url("../fonts/LatoBold.eot?#iefix") format("embedded-opentype"), url("../fonts/LatoBold.woff") format("woff"), url("../fonts/LatoBold.ttf") format("truetype")
+	font-weight: 700
+
+@font-face 
+	font-family: "LatoSemibold"
+	src: url("../fonts/LatoSemibold.eot?#iefix") format("embedded-opentype"), url("../fonts/LatoSemibold.woff") format("woff"),		url("../fonts/LatoSemibold.ttf") format("truetype")
+	font-weight: 600
+
+@font-face 
+	font-family: "LatoHeavy"
+	src: url("../fonts/LatoHeavy.eot?#iefix") format("embedded-opentype"), url("../fonts/LatoHeavy.woff") format("woff"), url("../fonts/LatoHeavy.ttf") format("truetype")
+	font-weight: 900
+
+html,
+body 
+	overflow-x: hidden
+
 p, h1, h2, h3, h4, form, ul
 	margin: 0
 	padding: 0
@@ -297,7 +327,7 @@ input
 		transition: all .3s ease
 		&:hover
 			text-decoration: none
-			.meeting-rooms__img-label
+			.meeting-rooms-card__img-label
 				background-color: #fff
 				color: #434343
 		img
@@ -674,3 +704,136 @@ input
 		&__close
 			right: 2px
 			top: 20px
+
+.datepicker
+	display: block
+	width: 340px
+	padding: 25px 40px
+	box-sizing: border-box
+	background-color: #fff
+	&__header
+		display: block
+		margin-bottom: 16px
+
+// Calendar
+.ui-widget-header 
+	padding: 0 !important
+	margin-bottom: 14px
+	font-family: 'Lato'
+	font-size: 16px
+	font-weight: 400
+	line-height: 24px
+	color: #434343
+
+.ui-corner-all
+	border: none !important
+	border-radius: 0 !important
+	background-color: transparent
+
+.ui-widget-header .ui-icon
+	background-image: none !important
+
+.ui-datepicker .ui-datepicker-title
+	font-size: 16px
+	line-height: 19px
+	font-weight: 600
+
+.ui-datepicker .ui-datepicker-next,
+.ui-datepicker .ui-datepicker-prev
+	top: -4px
+	width: 20px
+	height: 20px
+	cursor: pointer
+	&:hover
+		background-color: transparent
+	&::before
+		content: ''
+		position: absolute
+		top: 10px
+		z-index: 3
+		display: block
+		width: 6px
+		height: 6px
+		border-bottom: 3px solid #434343
+		border-left: 3px solid #434343
+
+.ui-datepicker .ui-datepicker-next-hover
+	right: 3px
+
+.ui-datepicker .ui-datepicker-prev-hover
+	left: 3px
+
+.ui-datepicker .ui-datepicker-next
+	right: -30px
+	&::before
+		left: 9px
+		transform: translate(-50%, -50%) rotate(-135deg)
+
+.ui-datepicker .ui-datepicker-prev
+	left: -25px
+	&::before
+		left: 11px
+		transform: translate(-50%, -50%) rotate(45deg)
+
+.ui-datepicker
+	width: 256px
+	margin: 0
+	padding: 0
+
+.ui-datepicker table
+	margin: 0
+	letter-spacing: 0.5px
+	border-collapse: collapse
+	border-spacing: 0
+	border: none
+
+.ui-datepicker th,
+.ui-datepicker td,
+.ui-datepicker-week-end
+	font-size: 16px
+	line-height: 19px
+	width: 32px
+	height: 32px
+	border-collapse: collapse
+	padding: 2px
+	border: none
+	border-radius: 50%
+	a
+		border-radius: 50%
+		text-align: center
+		line-height: 32px
+		width: 32px
+		height: 32px
+		outline: none !important
+		transition: all .2s ease
+
+.ui-datepicker th
+	opacity: 0.5
+	span
+		font-size: 16px
+		font-weight: 600
+		line-height: 19px
+
+.ui-state-default, .ui-widget-content .ui-state-default
+	border: none !important
+	padding: 0
+	background-color: #fff
+	color: #434343
+	transition: all .2s ease
+
+.ui-widget-content .ui-state-active,
+.ui-state-default .ui-priority-secondary,
+.ui-state-default
+	background-color: #434343
+	color: #fff
+	opacity: 1
+
+.ui-state-highlight, .ui-widget-content .ui-state-highlight
+	background-color: #434343
+	color: #fff
+	opacity: 0.5
+
+.ui-widget-content .ui-state-active
+	background-color: #434343	
+	color: #fff
+	opacity: 1
