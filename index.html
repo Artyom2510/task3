@@ -37,20 +37,86 @@
 		<h1 class="rent-negotiation__title rent-negotiation-title">Арендуйте переговорную комнату в SOK</h1>
 	</section>
 	<section class="select-negotiation">
-		<div class="select-negotiation__select">
-			<span class="select-negotiation__title">Дата</span>
-			<div class="select">
-				<span class="select__value" title="Сегодня, 26 марта 2019">Сегодня, 26 марта 2019</span>
-				<button class="select__arrow" type="button"></button>
+		<div class="select-negotiation__select form-wraper formselect-radio">
+			<span class="form-wraper__label">Переговорная</span>
+			<div class="form-wraper__box formselect-radio__value form-box" title="Динамо">
+					<span>Динамо</span>
 			</div>
+			<button type="button" class="form-wraper__button formselect-radio__arrow">
+			</button>
+			<input type="hidden" name="room_category" class="form-wraper__input" value="7">
+			<ul class="formselect-radio__list">
+				<li class="formselect-radio__item">
+					<input type="radio" id="category-room-7" value="7" name="category-room">
+					<label for="category-room-7">Переговорная2</label>
+				</li>
+				<li class="formselect-radio__item">
+					<input type="radio" id="category-room-19" value="19" name="category-room">
+					<label for="category-room-19">Переговорная3</label>
+				</li>
+				<li class="formselect-radio__item">
+					<input type="radio" id="category-room-20" value="20" name="category-room">
+					<label for="category-room-20">Переговорная4</label>
+				</li>
+				<li class="formselect-radio__item">
+					<input type="radio" id="category-room-21" value="21" name="category-room">
+					<label for="category-room-21">Переговорная5</label>
+				</li>
+			</ul>
 		</div>
-		<div class="select-negotiation__select">
-			<span class="select-negotiation__title">Кол-во человек</span>
-			<div class="select">
-				<!-- <span class="select__value" title="4 человека">4 человека</span> -->
-				<button class="select__arrow" type="button"></button>
-				<input class="select__input" type="select" value="10 человек">
+		<div class="select-negotiation__select form-wraper formselect-radio">
+			<span class="form-wraper__label">Переговорная</span>
+			<div class="form-wraper__box formselect-radio__value form-box" title="Динамо">
+					<span>Динамо</span>
 			</div>
+			<button type="button" class="form-wraper__button formselect-radio__arrow">
+			</button>
+			<input type="hidden" name="room_category" class="form-wraper__input" value="7">
+			<ul class="formselect-radio__list">
+				<li class="formselect-radio__item">
+					<input type="radio" id="category-room-7" value="7" name="category-room">
+					<label for="category-room-7">Переговорная2</label>
+				</li>
+				<li class="formselect-radio__item">
+					<input type="radio" id="category-room-19" value="19" name="category-room">
+					<label for="category-room-19">Переговорная3</label>
+				</li>
+				<li class="formselect-radio__item">
+					<input type="radio" id="category-room-20" value="20" name="category-room">
+					<label for="category-room-20">Переговорная4</label>
+				</li>
+				<li class="formselect-radio__item">
+					<input type="radio" id="category-room-21" value="21" name="category-room">
+					<label for="category-room-21">Переговорная5</label>
+				</li>
+			</ul>
+		</div>
+		<div class="select-negotiation__select form-wraper formselect-radio">
+			<span class="form-wraper__label">Кол-во человек</span>
+			<div class="form-wraper__box formselect-radio__value form-box" title="4 человека">
+					<span>4 человека</span>
+			</div>
+			<button type="button" class="form-wraper__button formselect-radio__arrow">
+			</button>
+			<input type="hidden" name="room_category" class="form-wraper__input" value="7">
+			<ul class="formselect-radio__list">
+				<li class="formselect-radio__item">
+					<input type="radio" id="category-room-7" value="7" name="category-room">
+					<label for="category-room-7">10 человек</label>
+				</li>
+				<li class="formselect-radio__item">
+					<input type="radio" id="category-room-19" value="19" name="category-room">
+					<label for="category-room-19">20 человек</label>
+				</li>
+				<li class="formselect-radio__item">
+					<input type="radio" id="category-room-20" value="20" name="category-room">
+					<label for="category-room-20">30 человек</label>
+				</li>
+				<li class="formselect-radio__item">
+					<input type="radio" id="category-room-21" value="21" name="category-room">
+					<label for="category-room-21">40 человек</label>
+				</li>
+			</ul>
 		</div>
 	</section>
 	<section class="meeting-rooms">
@@ -344,21 +410,43 @@
 				</p>
 				<div class="meeting-rooms-form__settings-wrap">
 					<div class="meeting-rooms-form__settings form-settings">
-						<label for="aa" class="form-settings__label">Начало аренды</label>
-						<div class="form-settings__select">
-							<input type="select" class="form-settings__time form-settings-input" id="aa" value="13:00">
-							<button class="select__arrow" type="button"></button>
+						<div class="select-negotiation__select form-wraper formselect-radio">
+							<span class="form-wraper__label">Кол-во человек</span>
+							<div class="form-wraper__box formselect-radio__value form-box" title="4 человека">
+									<span>4 человека</span>
+							</div>
+							<button type="button" class="form-wraper__button formselect-radio__arrow">
+							</button>
+							<input type="hidden" name="room_category" class="form-wraper__input" value="7">
+							<ul class="formselect-radio__list">
+								<li class="formselect-radio__item">
+									<input type="radio" id="category-room-7" value="7" name="category-room">
+									<label for="category-room-7">10 человек</label>
+								</li>
+								<li class="formselect-radio__item">
+									<input type="radio" id="category-room-19" value="19" name="category-room">
+									<label for="category-room-19">20 человек</label>
+								</li>
+								<li class="formselect-radio__item">
+									<input type="radio" id="category-room-20" value="20" name="category-room">
+									<label for="category-room-20">30 человек</label>
+								</li>
+								<li class="formselect-radio__item">
+									<input type="radio" id="category-room-21" value="21" name="category-room">
+									<label for="category-room-21">40 человек</label>
+								</li>
+							</ul>
 						</div>
 					</div>
 					<div class="meeting-rooms-form__settings form-settings">
 						<label for="ww" class="form-settings__label">Количество часов</label>
 						<div class="form-settings__input-count">
-						<button class="form-settings__count-minus count-plus-minus" type="button">
-							<img src="input-plus.svg" alt="">
-						</button>
-						<input type="number" class="form-settings__hour form-settings-input" id="ww" value="1">
 							<button class="form-settings__count-plus count-plus-minus" type="button">
 								<img src="input-minus.svg" alt="">
+							</button>
+							<input type="number" class="form-settings__hour form-settings-input" id="ww" value="1">
+							<button class="form-settings__count-minus count-plus-minus" type="button">
+								<img src="input-plus.svg" alt="">
 							</button>
 						</div>
 					</div>
