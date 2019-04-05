@@ -1,5 +1,6 @@
-p, h1, h2, h3, h4, form
+p, h1, h2, h3, h4, form, ul
 	margin: 0
+	padding: 0
 
 body
 	margin: 0
@@ -82,6 +83,97 @@ input
 		font-size: 36px
 		line-height: 38px
 
+.formselect-radio
+	position: relative
+	z-index: 1
+	&__value
+		width: 100%
+		overflow: hidden
+		white-space: nowrap
+		text-overflow: ellipsis
+	&__list
+		position: absolute
+		z-index: 1
+		display: none
+		top: calc(100% - 2px)
+		left: 0
+		width: 100%
+		max-height: 25vh
+		overflow: auto
+		margin: 0
+		padding: 8px 0px
+		background-color: #fff
+	&__item
+		width: 100%
+		list-style: none
+		&:hover,
+		&:focus
+			background-color: #e8e8e8
+		input[type="radio"]
+			display: none
+		label
+			display: block
+			width: 100%
+			margin: 0
+			padding: 8px 10px
+			min-height: 19px
+			line-height: 19px
+			font-weight: 600
+			cursor: pointer
+			box-sizing: border-box
+	&.open
+		z-index: 15
+		.formselect-radio__list
+			display: block
+
+.form-wraper
+	position: relative
+	z-index: 1
+	&__label
+		display: inline-block
+		margin-bottom: 18px
+		font-size: 12px
+		line-height: 15px
+		color: #434343
+	&__box
+	&__button
+		position: absolute
+		z-index: 2
+		top: 35px
+		right: 0px
+		width: 20px
+		height: 20px
+		padding: 0
+		margin: 0
+		outline: none !important
+		border: none
+		cursor: pointer
+		background-color: transparent
+		&::before
+			content: ''
+			position: absolute
+			z-index: 3
+			display: block
+			width: 7px
+			height: 7px
+			top: 8px
+			left: 10px
+			border-bottom: 3px solid #434343
+			border-left: 3px solid #434343
+			transform: translate(-50%, -50%) rotate(-45deg)
+
+.form-box
+	display: block
+	background-color: transparent
+	border-bottom: 2px solid #434343
+	padding-bottom: 4px
+	outline: none !important
+	font-weight: 600
+	font-size: 16px
+	line-height: 19px
+	transition: all .2s ease-out
+
+
 .select-negotiation
 	display: flex
 	justify-content: center
@@ -94,12 +186,7 @@ input
 		margin-right: 60px
 		&:last-child
 			margin-right: 0
-	&__title
-		display: inline-block
-		margin-bottom: 18px
-		font-size: 12px
-		line-height: 15px
-		color: #434343
+
 
 @media (max-width: 1000px)
 	.select-negotiation
@@ -128,39 +215,6 @@ input
 	cursor: pointer
 	&:first-child
 		margin-right: 34px
-	&__arrow
-		position: absolute
-		z-index: 2
-		top: 0px
-		right: -3px
-		width: 20px
-		height: 20px
-		padding: 0
-		margin: 0
-		outline: none !important
-		border: none
-		cursor: pointer
-		background-color: transparent
-		&::before
-			content: ''
-			position: absolute
-			z-index: 3
-			display: block
-			width: 7px
-			height: 7px
-			top: 10px
-			left: 10px
-			border-bottom: 3px solid #434343
-			border-left: 3px solid #434343
-			transform: translate(-50%, -50%) rotate(-45deg)
-	&__value
-		width: 100%
-		font-weight: 600
-		font-size: 16px
-		line-height: 19px
-		overflow: hidden
-		white-space: nowrap
-		text-overflow: ellipsis
 	&__list
 		position: absolute
 		top: calc(100% + 2px)
@@ -171,10 +225,6 @@ input
 	&__item
 		display: block
 		margin: 0
-		padding: 8px 10px
-		font-size: 15px
-		line-height: 17px
-		font-weight: 600
 		cursor: pointer
 		list-style: none
 		&:hover,
@@ -182,16 +232,11 @@ input
 			background-color: #e8e8e8
 		label
 			display: inline-block
+			padding: 8px 10px
+			font-size: 15px
+			line-height: 17px
+			font-weight: 600
 			width: calc(100% - 10px)
-
-.select.open
-	z-index: 11
-	.select__list
-		display: block
-
-@media (max-width: 767px)
-	.select
-		width: 100%
 
 .meeting-rooms
 	display: flex
@@ -458,7 +503,6 @@ input
 .meeting-rooms-form
 	display: block
 	width: 640px
-	margin: 0 auto
 	padding: 40px 50px
 	background-color: #ffe9b8
 	box-sizing: border-box
@@ -490,6 +534,7 @@ input
 		padding: 25px 30px
 		&__settings-wrap
 			flex-wrap: wrap
+			margin-bottom: 36px
 		&__settings:first-child
 			margin-right: 0px
 			margin-bottom: 20px
@@ -508,9 +553,9 @@ input
 		display: flex
 		justify-content: center
 	&__count-plus
-		margin-left: 10px
-	&__count-minus
 		margin-right: 10px
+	&__count-minus
+		margin-left: 10px
 	&__time
 		text-align: left
 	&__hour
@@ -521,6 +566,7 @@ input
 		justify-content: space-between
 	&__btn
 		min-width: 240px
+		height: 44px
 		margin: 0
 
 .count-plus-minus
@@ -616,3 +662,9 @@ input
 				transform: translate(-50%, -50%) rotate(45deg) scale(1.1)
 			&::after
 				transform: translate(-50%, -50%) rotate(-45deg) scale(1.1)
+
+@media(max-width: 767px)
+	.meeting-rooms-form-popup
+		&__close
+			right: 2px
+			top: 20px
