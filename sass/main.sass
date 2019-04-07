@@ -80,6 +80,9 @@ input
 		&::-webkit-outer-spin-button, &::-webkit-inner-spin-button
 			-webkit-appearance: none
 			margin: 0
+	&[type="text"]
+		border: none
+		outline: none !important
 
 .rent-negotiation
 	position: relative
@@ -179,8 +182,10 @@ input
 		outline: none !important
 		border: none
 		cursor: pointer
-		background-color: transparent
+	&__calendar
+		background-color: #d5e0fb
 	&__button
+		background-color: transparent
 		&::before
 			content: ''
 			position: absolute
@@ -193,10 +198,6 @@ input
 			border-bottom: 3px solid #434343
 			border-left: 3px solid #434343
 			transform: translate(-50%, -50%) rotate(-45deg)
-	&__calendar
-		&::before
-			content: ''
-			background-image: url(../img/calendar.svg)
 
 .form-box
 	display: block
@@ -711,11 +712,8 @@ input
 			right: 2px
 			top: 20px
 
-.datepicker
-	display: block
-	width: 340px
+.ui-widget.ui-widget-content
 	padding: 25px 40px
-	box-sizing: border-box
 	background-color: #fff
 	&__header
 		display: block
@@ -740,6 +738,7 @@ input
 	background-image: none !important
 
 .ui-datepicker .ui-datepicker-title
+	font-family: 'Lato'
 	font-size: 16px
 	line-height: 19px
 	font-weight: 600
@@ -788,7 +787,6 @@ input
 
 .ui-datepicker table
 	margin: 0
-	letter-spacing: 0.5px
 	border-collapse: collapse
 	border-spacing: 0
 	border: none
@@ -796,8 +794,10 @@ input
 .ui-datepicker th,
 .ui-datepicker td,
 .ui-datepicker-week-end
+	font-family: 'Lato'
 	font-size: 16px
 	line-height: 19px
+	letter-spacing: 0.5px
 	width: 32px
 	height: 32px
 	border-collapse: collapse
@@ -808,6 +808,7 @@ input
 		border-radius: 50%
 		text-align: center
 		line-height: 32px
+		letter-spacing: 0.5px !important
 		width: 32px
 		height: 32px
 		outline: none !important
@@ -819,6 +820,7 @@ input
 		font-size: 16px
 		font-weight: 600
 		line-height: 19px
+		letter-spacing: 0.5px !important
 
 .ui-state-default, .ui-widget-content .ui-state-default
 	border: none !important
