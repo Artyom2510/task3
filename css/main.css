@@ -214,7 +214,7 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 	color: #434343;
 }
 
-.form-wraper__button {
+.form-wraper__button, .form-wraper__calendar {
 	position: absolute;
 	z-index: 2;
 	top: 35px;
@@ -243,6 +243,11 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 	-webkit-transform: translate(-50%, -50%) rotate(-45deg);
 	-ms-transform: translate(-50%, -50%) rotate(-45deg);
 	transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.form-wraper__calendar::before {
+	content: '';
+	background-image: url(../img/calendar.svg);
 }
 
 .form-box {

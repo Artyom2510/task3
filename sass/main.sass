@@ -166,7 +166,8 @@ input
 		line-height: 15px
 		color: #434343
 	&__box
-	&__button
+	&__button,
+	&__calendar
 		position: absolute
 		z-index: 2
 		top: 35px
@@ -179,6 +180,7 @@ input
 		border: none
 		cursor: pointer
 		background-color: transparent
+	&__button
 		&::before
 			content: ''
 			position: absolute
@@ -191,6 +193,10 @@ input
 			border-bottom: 3px solid #434343
 			border-left: 3px solid #434343
 			transform: translate(-50%, -50%) rotate(-45deg)
+	&__calendar
+		&::before
+			content: ''
+			background-image: url(../img/calendar.svg)
 
 .form-box
 	display: block
