@@ -24,22 +24,26 @@
 	<!--	<meta name="theme-color" content="#000">-->
 	<!--	<meta name="msapplication-navbutton-color" content="#000">-->
 	<!--	<meta name="apple-mobile-web-app-status-bar-style" content="#000">-->
-	<!-- <link rel="stylesheet" href="js/sok/malihu-custom-scrollbar-plugin-master/jquery.mCustomScrollbar.min.css"> -->
+	<link rel="stylesheet" href="css/jquery-ui.min.css">
+	<link rel="stylesheet" href="css/jquery-ui.structure.min.css">
+	<link rel="stylesheet" href="css/jquery-ui.theme.min.css">
 	<link rel="stylesheet" href="css/main.css">
-	<!-- 
+	
 	<script src="js/jquery-3.2.1.min.js"></script>
-	<script src="js/common.js"></script> -->
+	<script src="js/jquery-ui.min.js"></script>
+	<script src="js/jquery.smoothscroll.js"></script>
+	<script src="js/datepicker.js"></script>
 </head>
 
 <body>
 	<section class="rent-negotiation">
-		<img src="rent-negotiation.jpg" alt="">
+		<img src="img/rent-negotiation.jpg" alt="">
 		<h1 class="rent-negotiation__title rent-negotiation-title">Арендуйте переговорную комнату в SOK</h1>
 	</section>
 	<section class="select-negotiation">
 		<div class="select-negotiation__select form-wraper formselect-radio">
-			<span class="form-wraper__label">Переговорная</span>
-			<div class="form-wraper__box formselect-radio__value form-box" title="Динамо">
+			<label for="" class="form-wraper__label">Переговорная</label>
+			<div class="form-wraper__box formselect-radio__value form-box" title="Динамо" id="">
 					<span>Динамо</span>
 			</div>
 			<button type="button" class="form-wraper__button formselect-radio__arrow">
@@ -64,36 +68,18 @@
 				</li>
 			</ul>
 		</div>
-		<div class="select-negotiation__select form-wraper formselect-radio">
-			<span class="form-wraper__label">Переговорная</span>
-			<div class="form-wraper__box formselect-radio__value form-box" title="Динамо">
-					<span>Динамо</span>
+		<div class="select-negotiation__select form-wraper">
+			<label for="datepicker" class="form-wraper__label">Дата</label>
+			<div class="form-wraper__box formselect-radio__value form-box">
+				<input type="text" class="datepicker" id="datepicker" placeholder="" autocomplete="off" im-insert="true">
 			</div>
-			<button type="button" class="form-wraper__button formselect-radio__arrow">
-			</button>
-			<input type="hidden" name="room_category" class="form-wraper__input" value="7">
-			<ul class="formselect-radio__list">
-				<li class="formselect-radio__item">
-					<input type="radio" id="category-room-7" value="7" name="category-room">
-					<label for="category-room-7">Переговорная2</label>
-				</li>
-				<li class="formselect-radio__item">
-					<input type="radio" id="category-room-19" value="19" name="category-room">
-					<label for="category-room-19">Переговорная3</label>
-				</li>
-				<li class="formselect-radio__item">
-					<input type="radio" id="category-room-20" value="20" name="category-room">
-					<label for="category-room-20">Переговорная4</label>
-				</li>
-				<li class="formselect-radio__item">
-					<input type="radio" id="category-room-21" value="21" name="category-room">
-					<label for="category-room-21">Переговорная5</label>
-				</li>
-			</ul>
+			<label for="datepicker" type="button" class="form-wraper__calendar">
+				<img src="img/calendar.svg" alt="" class="">
+			</label>
 		</div>
 		<div class="select-negotiation__select form-wraper formselect-radio">
-			<span class="form-wraper__label">Кол-во человек</span>
-			<div class="form-wraper__box formselect-radio__value form-box" title="4 человека">
+			<label for="" class="form-wraper__label">Кол-во человек</label>
+			<div class="form-wraper__box formselect-radio__value form-box" title="4 человека" id="">
 					<span>4 человека</span>
 			</div>
 			<button type="button" class="form-wraper__button formselect-radio__arrow">
@@ -125,7 +111,7 @@
 			<div class="meeting-rooms__card meeting-rooms-card">
 				<div class="meeting-rooms-card__top">
 					<a class="meeting-rooms-card__img-block" href="#">
-						<img src="location.png" alt="Location">
+						<img src="img/location.png" alt="Location">
 						<div class="meeting-rooms-card__img-label">Ленинградский проспект, вл.36, к.5</div>
 					</a>
 					<div class="meeting-rooms-card__info">
@@ -203,7 +189,7 @@
 			<div class="meeting-rooms__card meeting-rooms-card">
 				<div class="meeting-rooms-card__top">
 					<a class="meeting-rooms-card__img-block" href="#">
-						<img src="location.png" alt="Location">
+						<img src="img/location.png" alt="Location">
 						<div class="meeting-rooms-card__img-label">Ленинградский проспект, вл.36, к.5</div>
 					</a>
 					<div class="meeting-rooms-card__info">
@@ -281,7 +267,7 @@
 			<div class="meeting-rooms__card meeting-rooms-card">
 				<div class="meeting-rooms-card__top">
 					<a class="meeting-rooms-card__img-block" href="#">
-						<img src="location.png" alt="Location">
+						<img src="img/location.png" alt="Location">
 						<div class="meeting-rooms-card__img-label">Ленинградский проспект, вл.36, к.5</div>
 					</a>
 					<div class="meeting-rooms-card__info">
@@ -399,6 +385,7 @@
 			</div>
 		</div>
 	</section>
+	<!-- Popup -->
 	<div class="meeting-rooms-form-popup">
 		<div class="meeting-rooms-form-popup__bg"></div>
 		<div class="meeting-rooms-form-popup__wrap">
@@ -458,11 +445,11 @@
 						<label for="ww" class="form-settings__label">Количество часов</label>
 						<div class="form-settings__input-count">
 							<button class="form-settings__count-plus count-plus-minus" type="button">
-								<img src="input-minus.svg" alt="">
+								<img src="img/input-minus.svg" alt="">
 							</button>
 							<input type="number" class="form-settings__hour form-settings-input" id="ww" value="1">
 							<button class="form-settings__count-minus count-plus-minus" type="button">
-								<img src="input-plus.svg" alt="">
+								<img src="img/input-plus.svg" alt="">
 							</button>
 						</div>
 					</div>
@@ -475,5 +462,4 @@
 		</div>
 	</div>
 </body>
-
 </html>
