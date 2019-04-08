@@ -217,6 +217,7 @@ input[type="text"] {
 	font-size: 12px;
 	line-height: 15px;
 	color: #434343;
+	cursor: pointer;
 }
 
 .form-wraper__button, .form-wraper__calendar {
@@ -266,6 +267,7 @@ input[type="text"] {
 	font-weight: 600;
 	font-size: 16px;
 	line-height: 19px;
+	color: #434343;
 	-webkit-transition: all .2s ease-out;
 	-o-transition: all .2s ease-out;
 	transition: all .2s ease-out;
@@ -1112,9 +1114,30 @@ input[type="text"] {
 	background-color: #fff;
 }
 
-.ui-widget.ui-widget-content__header {
-	display: block;
-	margin-bottom: 16px;
+@media (max-width: 767px) {
+	.ui-widget.ui-widget-content {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+}
+
+.datepicker {
+	width: 100%;
+	height: 20px;
+	padding: 0;
+	background-color: transparent;
+	font-family: 'Lato';
+	font-weight: 600;
+	font-size: 16px;
+	line-height: 19px;
+	color: #434343;
+}
+
+.datepicker::-webkit-input-placeholder {
+	font-weight: 600;
+	font-size: 16px;
+	line-height: 19px;
+	color: #434343;
 }
 
 .ui-widget-header {
@@ -1180,7 +1203,7 @@ input[type="text"] {
 }
 
 .ui-datepicker .ui-datepicker-next {
-	right: -30px;
+	right: -25px;
 }
 
 .ui-datepicker .ui-datepicker-next::before {
@@ -1199,6 +1222,16 @@ input[type="text"] {
 	-webkit-transform: translate(-50%, -50%) rotate(45deg);
 	-ms-transform: translate(-50%, -50%) rotate(45deg);
 	transform: translate(-50%, -50%) rotate(45deg);
+}
+
+@media (max-width: 767px) {
+	.ui-datepicker .ui-datepicker-next {
+		right: -10px;
+	}
+
+	.ui-datepicker .ui-datepicker-prev {
+		left: -10px;
+	}
 }
 
 .ui-datepicker {
@@ -1220,7 +1253,6 @@ input[type="text"] {
 	font-family: 'Lato';
 	font-size: 16px;
 	line-height: 19px;
-	letter-spacing: 0.5px;
 	width: 32px;
 	height: 32px;
 	border-collapse: collapse;
@@ -1237,13 +1269,25 @@ input[type="text"] {
 	border-radius: 50%;
 	text-align: center;
 	line-height: 32px;
-	letter-spacing: 0.5px !important;
 	width: 32px;
 	height: 32px;
 	outline: none !important;
 	-webkit-transition: all .2s ease;
 	-o-transition: all .2s ease;
 	transition: all .2s ease;
+}
+
+.ui-datepicker th .ui-state-default,
+  .ui-datepicker td .ui-state-default,
+  .ui-datepicker-week-end .ui-state-default {
+	width: 32px;
+	height: 32px;
+	line-height: 32px;
+	font-size: 16px;
+	font-weight: 600;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
+	text-align: center;
 }
 
 .ui-datepicker th {
@@ -1254,7 +1298,6 @@ input[type="text"] {
 	font-size: 16px;
 	font-weight: 600;
 	line-height: 19px;
-	letter-spacing: 0.5px !important;
 }
 
 .ui-state-default, .ui-widget-content .ui-state-default {

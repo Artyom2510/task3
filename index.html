@@ -32,7 +32,7 @@
 	<script src="js/jquery-3.2.1.min.js"></script>
 	<script src="js/jquery-ui.min.js"></script>
 	<script src="js/jquery.smoothscroll.js"></script>
-	<script src="js/common.js"></script>
+	<script src="js/datepicker.js"></script>
 </head>
 
 <body>
@@ -42,8 +42,8 @@
 	</section>
 	<section class="select-negotiation">
 		<div class="select-negotiation__select form-wraper formselect-radio">
-			<span class="form-wraper__label">Переговорная</span>
-			<div class="form-wraper__box formselect-radio__value form-box" title="Динамо">
+			<label for="" class="form-wraper__label">Переговорная</label>
+			<div class="form-wraper__box formselect-radio__value form-box" title="Динамо" id="">
 					<span>Динамо</span>
 			</div>
 			<button type="button" class="form-wraper__button formselect-radio__arrow">
@@ -69,17 +69,17 @@
 			</ul>
 		</div>
 		<div class="select-negotiation__select form-wraper">
-			<span class="form-wraper__label">Дата</span>
+			<label for="datepicker" class="form-wraper__label">Дата</label>
 			<div class="form-wraper__box formselect-radio__value form-box">
 				<input type="text" class="datepicker" id="datepicker" placeholder="" autocomplete="off" im-insert="true">
 			</div>
-			<button type="button" class="form-wraper__calendar formselect-radio__arrow">
-				<img src="img/calendar.svg" alt="">
-			</button>
+			<label for="datepicker" type="button" class="form-wraper__calendar">
+				<img src="img/calendar.svg" alt="" class="">
+			</label>
 		</div>
 		<div class="select-negotiation__select form-wraper formselect-radio">
-			<span class="form-wraper__label">Кол-во человек</span>
-			<div class="form-wraper__box formselect-radio__value form-box" title="4 человека">
+			<label for="" class="form-wraper__label">Кол-во человек</label>
+			<div class="form-wraper__box formselect-radio__value form-box" title="4 человека" id="">
 					<span>4 человека</span>
 			</div>
 			<button type="button" class="form-wraper__button formselect-radio__arrow">
