@@ -33,6 +33,8 @@
 	<script src="js/jquery-ui.min.js"></script>
 	<script src="js/jquery.smoothscroll.js"></script>
 	<script src="js/datepicker.js"></script>
+	<script src="js/jquery.inputmask.min.js"></script>
+	<script src="js/jquery.inputmask.date.extensions.min.js"></script>
 </head>
 
 <body>
@@ -71,7 +73,7 @@
 		<div class="select-negotiation__select form-wraper">
 			<label for="datepicker" class="form-wraper__label">Дата</label>
 			<div class="form-wraper__box formselect-radio__value form-box">
-				<input type="text" class="datepicker" id="datepicker" placeholder="" autocomplete="off" im-insert="true">
+				<input type="text" class="datepicker" id="datepicker" data-inputmask="'alias': 'date'" placeholder="__.__.20__" autocomplete="off" im-insert="true">
 			</div>
 			<label for="datepicker" type="button" class="form-wraper__calendar">
 				<img src="img/calendar.svg" alt="" class="">
