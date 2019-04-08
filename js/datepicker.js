@@ -18,5 +18,5 @@ $(document).ready(function(){
 	var y = new Date().getFullYear();
 	var month = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'];
 	var m = month[new Date().getMonth()];
-	document.getElementsByClassName('.datepicker').placeholder = 'Сегодня, ' + d + ' ' + m + ' ' + y;
+	document.querySelector('.datepicker').placeholder = 'Сегодня, ' + d + ' ' + m + ' ' + y;
 });
