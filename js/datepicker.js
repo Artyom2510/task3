@@ -5,8 +5,8 @@ $(document).ready(function(){
 					$('.ui-datepicker').css('z-index', 4);
 			}, 0);
 		},
-		dateFormat : 'DD, d MM yy',
-		monthNames : ['Января','Февраля','Марта','Апреля','Мая','Июня','Июля','Августа','Сентября','Октября','Ноября','Декабря'],
+		dateFormat: "dd.mm.yy",
+		monthNames : ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
 		dayNamesMin : ['Вс', 'Пн','Вт','Ср','Чт','Пт','Сб'],
 		dayNames: ['Воскресенье', 'Понедельник','Вторник','Среда','Четверг','Пятница','Суббота'],
 		firstDay: 1,
@@ -14,9 +14,5 @@ $(document).ready(function(){
 		selectOtherMonths: true,
 		minDate: 0,
 	});
-	var d = new Date().getDate();
-	var y = new Date().getFullYear();
-	var month = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'];
-	var m = month[new Date().getMonth()];
-	document.querySelector('.datepicker').placeholder = 'Сегодня, ' + d + ' ' + m + ' ' + y;
+	$('.datepicker').inputmask();
 });
