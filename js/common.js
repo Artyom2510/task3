@@ -40,6 +40,13 @@ $(function() {
 			
 			_.$timeline = $(selector);
 			_.$popup = $('.meeting-rooms-form-popup');
+			_.$counter = $('.js-time-counter');
+
+			_.$popupFrom = $('.meeting-rooms-form');
+			_.$popupFormClear = $('.form-settings__btn[type="clear"]');
+			_.$popupFormSubmit = $('.form-settings__btn[type="submit"]');
+			_.$popupFormTime = $('.form-settings__time');
+			_.$popupFormHour = $('.form-settings__hour');
 
 			_.store = createStore(_.reducer, {
 				startState: settings.data,
@@ -59,6 +66,32 @@ $(function() {
 		var _ = this;
 
 		_.$timeline.append(_.renderTimeline()); // Заполняю таймлайн
+
+		// Инициализация попап
+		_.$popup.switchPopup({
+			btnClass: 'js-tgl-meeting-popup',
+			duration: 300
+		});
+
+		// Инициализация счетчика
+		_.$counter.formfieldCounter({
+			value: 1,
+			min: 1,
+			max: 24,
+			plusSelector: '.form-settings__count-plus',
+			minusSelector: '.form-settings__count-minus',
+			inputSelector: '.form-settings__hour'
+		});
+
+		// Применение настроек в форме попапа
+		_.$popupFormSubmit.on('click', function(e) {
+			e.preventDefault();
+
+			_.renderNewSequence({
+				from: +_.$popupFormTime.val(),
+				to: +_.$popupFormHour.val()
+			});
+		});
 
 		console.log(_.store.getState());
 	}
@@ -116,11 +149,7 @@ $(function() {
 	Timeline.prototype.booking = function(time) {
 		var _ = this;
 
-		// _.$popup.switchPopup('open');
-		_.renderNewSequence({
-			from: time,
-			to: time + 1
-		});
+		_.$popup.switchPopup('open');
 	}
 
 	Timeline.prototype.renderNewSequence = function(interval) {
@@ -129,7 +158,7 @@ $(function() {
 		_.renderSequence({
 			interval: interval,
 			update: function(state) {
-				_.updateNextState(state.nextState);
+				_.updateNextState(state.nextState, state.prevState);
 			}
 		});
 		
@@ -142,12 +171,11 @@ $(function() {
 
 		_.$timeline.children('.timeline__sequence').remove();
 
-		console.log('render all', state.nextState);
 		state.nextState.forEach(function(interval) {
 			var $sequence = _.renderSequence({
 				interval: interval,
 				update: function(state) {
-					_.updateNextState(state.nextState);
+					_.updateNextState(state.nextState, state.prevState);
 				}
 			});
 			
@@ -155,13 +183,12 @@ $(function() {
 		});
 	}
 
-	Timeline.prototype.updateNextState = function(interval) {
+	Timeline.prototype.updateNextState = function(nextState, prevState) {
 		var _ = this;
 
-		console.log('update', interval);
 		_.store.dispatch({
 			type: 'UPDATE_NEXT_STATE',
-			payload: _.validateTime(interval)
+			payload: _.validateTime(nextState, prevState)
 		});
 		_.renderSequenceFromState();
 	}
@@ -195,8 +222,8 @@ $(function() {
 		var returnCount = count; // Возвращаемое количество часов временного отрезка
 
 		var prevState = {
-			from: interval.from,
-			to: interval.to
+			from: Math.floor(interval.from),
+			to: Math.floor(interval.to)
 		};
 
 		$sequence[0].style.width = sequenceWidth + 'px';
@@ -283,7 +310,7 @@ $(function() {
 		return $sequence[0];
 	}
 
-	Timeline.prototype.validateTime = function(newInterval) {
+	Timeline.prototype.validateTime = function(nextState, prevState) {
 		var _ = this;
 		var state = _.store.getState();
 
@@ -305,7 +332,13 @@ $(function() {
 			}
 		});
 
-		for( var i = newInterval.from ; i < newInterval.to ; i++ ) {
+		if( typeof prevState !== 'undefined' ) {
+			for( var i = prevState.from ; i < prevState.to ; i++ ) {
+				if( timeline[i] === 2 ) timeline[i] = 0;
+			}
+		}
+
+		for( var i = nextState.from ; i < nextState.to ; i++ ) {
 			if( timeline[i] !== 1 ) timeline[i] = 2;
 		}
 
@@ -350,11 +383,6 @@ $(function() {
 
 	new Timeline('.timeline-1', {
 		data: timelineDataArray
-	});
-
-	$('.meeting-rooms-form-popup').switchPopup({
-		btnClass: 'js-tgl-meeting-popup',
-		duration: 300
 	});
 
 });

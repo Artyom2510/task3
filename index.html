@@ -32,6 +32,7 @@
 	<script src="js/jquery-ui.min.js"></script>
 	<script src="js/datepicker.js"></script>
 	<script src="js/switchPopup.js"></script>
+	<script src="js/formfieldCounter.js"></script>
 	<script src="js/common.js"></script>
 </head>
 
@@ -465,19 +466,19 @@
 					</div>
 					<div class="meeting-rooms-form__settings form-settings">
 						<label for="ww" class="form-settings__label">Количество часов</label>
-						<div class="form-settings__input-count">
-							<button class="form-settings__count-plus count-plus-minus" type="button">
-								<img src="img/input-minus.svg" alt="">
+						<div class="form-settings__input-count js-time-counter">
+							<button class="form-settings__count-minus count-plus-minus" type="button">
+								<img src="input-minus.svg">
 							</button>
 							<input type="number" class="form-settings__hour form-settings-input" id="ww" value="1">
-							<button class="form-settings__count-minus count-plus-minus" type="button">
-								<img src="img/input-plus.svg" alt="">
+							<button class="form-settings__count-plus count-plus-minus" type="button">
+								<img src="input-plus.svg">
 							</button>
 						</div>
 					</div>
 				</div>
 				<div class="form-settings__btn-block">
-					<button class="form-settings__btn btn gray-btn js-tgl-meeting-popup">Отменить</button>
+					<button type="clear" class="form-settings__btn btn gray-btn js-tgl-meeting-popup">Отменить</button>
 					<button type="submit" class="form-settings__btn btn gray-btn">Все правильно</button>
 				</div>
 			</form>
