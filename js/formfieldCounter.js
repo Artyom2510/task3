@@ -144,9 +144,14 @@
 		var _ = this;
 
 		_.option[option] = value;
-		_.$input.attr(option, value);
+		
+		if( option === 'value' ) {
+			_.$input.val(value);
+			_.update();
+		} else {
+			_.$input.attr(option, value);
+		}
 
-		if( option === 'value' ) _.update();
 	}
 
 	$.fn.formfieldCounter = function() {
