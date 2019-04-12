@@ -3,9 +3,11 @@ $(document).ready(function(){
 	datepicker.datepicker({
 		beforeShow: function(){
 			setTimeout(function(){
-					$('.ui-datepicker').css('z-index', 4);
+				$('.ui-datepicker').css('z-index', 4);
 			}, 0);
 		},
+		prevText: '',
+		nextText: '',
 		dateFormat: "dd.mm.yy",
 		monthNames : ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
 		dayNamesMin : ['Вс', 'Пн','Вт','Ср','Чт','Пт','Сб'],

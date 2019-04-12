@@ -32,6 +32,16 @@ $(function() {
 		};
 	}
 
+	function getDate(format, value) {
+		var date;
+		try {
+				date = $.datepicker.parseDate(format, value);
+		} catch(error) {
+				date = null;
+		}
+		return date;
+	}
+
 	var locationData = {
 		'dinamo': [
 			{
@@ -113,6 +123,25 @@ $(function() {
 		{
 			date: '1554930000000',
 			locationId: 'dinamo',
+			meetingRoomId: 0,
+			time: [
+				{
+					from: 3,
+					to: 5
+				},
+				{
+					from: 7,
+					to: 8
+				},
+				{
+					from: 12,
+					to: 16
+				}
+			]
+		},
+		{
+			date: '1554930000000',
+			locationId: 'dinamo',
 			meetingRoomId: 2,
 			time: [
 				{
@@ -140,6 +169,7 @@ $(function() {
 
 			_.locationData = settings.locationData;
 
+			_.$meetingRoomCards = $('.meeting-rooms__cards');
 			_.$selectMeetingRoom = $('.select-negotiation__select_meeting-room');
 			_.$selectDate = $('.select-negotiation__select_date');
 			_.$selectAmountPeople = $('.select-negotiation__select_amount-people');
@@ -151,7 +181,8 @@ $(function() {
 					'meeting_room': '',
 					'date': '',
 					'amount_people': ''
-				}
+				},
+				bookedMeetingRoom: []
 			});
 
 			_.unsubscribe = _.store.subscribe(function () {
@@ -166,29 +197,147 @@ $(function() {
 	BookingMeetingRoom.prototype.init = function() {
 		var _ = this;
 
+		var filterProps = _.getInitFilterProps();
+		for( var prop in filterProps ) {
+			_.updateFilter(prop, filterProps[prop]);
+			_.updateBookedMeetingRoom();
+			_.renderMeetingRoomCards();
+		}
+
 		_.$filterPropInput.on('change', function(e) {
 			e.preventDefault();
-			console.log('1212');
-			_.store.dispatch({
-				type: 'UPDATE_FILTER_PROP',
-				payload: {
-					prop: e.target.name,
-					value: e.target.value
-				}
-			});
+
+			_.updateFilter(e.target.name, e.target.value);
+			_.updateBookedMeetingRoom();
+			_.renderMeetingRoomCards();
 		});
 
 		console.log(_.store.getState());
 	}
 
 	BookingMeetingRoom.prototype.update = function() {
-		_ = this;
+		var _ = this;
+		var state = _.store.getState();
 
-		console.log(_.store.getState());
+		console.log(state);
+	}
+
+	BookingMeetingRoom.prototype.updateFilter = function(prop, value) {
+		var _ = this;
+
+		_.store.dispatch({
+			type: 'UPDATE_FILTER_PROP',
+			payload: {
+				prop: prop,
+				value: value
+			}
+		});
+	}
+
+	// Обновление состояния забронированных переговорок
+	BookingMeetingRoom.prototype.updateBookedMeetingRoom = function() {
+		var _ = this;
+
+		var newData = _.getBookedMeetingRoom();
+		_.store.dispatch({
+			type: 'UPDATE_BOOKED_MEETING_ROOM',
+			payload: newData
+		});
+	}
+
+	BookingMeetingRoom.prototype.getInitFilterProps = function() {
+		var _ = this;
+
+		var result = {};
+
+		_.$filterPropInput.each(function(id, input) {
+			result[input.name] = input.value;
+		});
+
+		return result;
+	}
+
+	BookingMeetingRoom.prototype.getBookedMeetingRoom = function() {
+		var _ = this;
+
+		return bookedMeetingRoom;
+	}
+
+	// Рендер всех карточек переговорок
+	BookingMeetingRoom.prototype.renderMeetingRoomCards = function() {
+		var _ = this;
+		var state = _.store.getState();
+
+		_.$meetingRoomCards.empty();
+
+		// console.log(_.locationData[state.filter['meeting_room']])
+		_.locationData[state.filter['meeting_room']].forEach(function(location) {
+			if( +location.amountPeople.to === +state.filter['amount_people'] ) {
+				location.meetingRoom.forEach(function(item) {
+					var $card = _.renderMeetingRoomCard(item);
+					_.$meetingRoomCards.append($card);
+				});
+			}
+		});
+	}
+
+	// Рендер карточки переговорки
+	BookingMeetingRoom.prototype.renderMeetingRoomCard = function(d) {
+		var _ = this;
+		var state = _.store.getState();
+
+		var $card = $('<div class="meeting-rooms__card meeting-rooms-card" />');
+		var $cardTop = $('<div class="meeting-rooms-card__top" />');
+		var $cardImgBlock = $('<a class="meeting-rooms-card__img-block" href="#" />');
+		var $cardImgBlockImg = $('<img src="'+ d.previewImgUrl +'" alt="'+ d.name +'" >');
+		var $cardImgBlockLabel = $('<div class="meeting-rooms-card__img-label">'+ d.adress +'</div>');
+		var $cardInfo = $('<div class="meeting-rooms-card__info" />');
+		var $cardName = $('<span class="meeting-rooms-card__name">'+ d.name +'</span>');
+		var $cardDesc = $('<p class="meeting-rooms-card__desc">'+ d.desc +'</p>');
+		var $cardPriceList1 = $('<div class="meeting-rooms-card__price-list" />');
+		var $cardPriceList1Variant = $('<span class="meeting-rooms-card__variant">Офис</span>');
+		var $cardPriceList1Price = $('<span class="meeting-rooms-card__price">'+ d.prices.office +' руб.</span>');
+		var $cardPriceList2 = $('<div class="meeting-rooms-card__price-list" />');
+		var $cardPriceList2Variant = $('<span class="meeting-rooms-card__variant">Закрепленное рабочее место</span>');
+		var $cardPriceList2Price = $('<span class="meeting-rooms-card__price">'+ d.prices.place +' руб.</span>');
+		var $cardTimeline = $('<div class="meeting-rooms-card__timeline timeline"></div>');
+
+		$card.append([$cardTop, $cardTimeline]);
+		$cardTop.append([$cardImgBlock, $cardInfo]);
+		$cardImgBlock.append([$cardImgBlockImg, $cardImgBlockLabel]);
+		$cardInfo.append([$cardName, $cardDesc, $cardPriceList1, $cardPriceList2]);
+		$cardPriceList1.append([$cardPriceList1Variant, $cardPriceList1Price]);
+		$cardPriceList2.append([$cardPriceList2Variant, $cardPriceList2Price]);
+
+		console.log(state.filter['date']);
+		var timelineData = [];
+		state.bookedMeetingRoom.forEach(function(item) {
+			console.log(item);
+			if( item.meetingRoomId === d.id ) {
+				console.log(item.date, +getDate('dd.mm.yy', state.filter['date']));
+				if( item.date === +getDate('dd.mm.yy', state.filter['date']) ) {
+					timelineData = item.time;
+				}
+			}
+		});
+
+		new Timeline($cardTimeline, {
+			id: state.filter['meeting_room'] + '_' + d.id,
+			data: timelineData,
+			update: function(state) {
+				console.log(state);
+			}
+		});
+
+		return $card;
 	}
 
 	BookingMeetingRoom.prototype.reducer = function(state, action) {
 		switch(action.type) {
+			case 'UPDATE_BOOKED_MEETING_ROOM':
+				return $.extend({}, state, {
+					bookedMeetingRoom: action.payload
+				});
 			case 'UPDATE_FILTER_PROP':
 				var newState = {};
 				newState[action.payload.prop] = action.payload.value;
@@ -208,10 +357,10 @@ $(function() {
 	var Timeline = window.Timeline || {};
 
 	Timeline = (function() {
-		function Timeline(selector, settings) {
+		function Timeline($selector, settings) {
 			var _ = this;
 			
-			_.$timeline = $(selector);
+			_.$timeline = $selector;
 			_.$popup = $('.meeting-rooms-form-popup');
 			_.$counter = $('.js-time-counter');
 
@@ -221,11 +370,13 @@ $(function() {
 			_.$popupFormTime = $('.form-settings__time');
 			_.$popupFormHour = $('.form-settings__hour');
 			_.$popupFormEditId = $('.form-settings__edit-id');
+			_.$popupFormTimelintId = $('.form-settings__timeline-id');
 			_.$popupFormParentPeopleCount = $('.meeting-rooms-form__people-count');
 			_.$popupFormPeopleCount = $('.form-settings__people-count');
 			_.$popupFormPrevState = $('.form-settings__prev-state');
 
 			_.store = createStore(_.reducer, {
+				timelineId: settings.id,
 				startState: settings.data,
 				nextState: []
 			});
@@ -245,32 +396,19 @@ $(function() {
 
 	Timeline.prototype.init = function() {
 		var _ = this;
+		var state = _.store.getState();
 
 		_.$timeline.append(_.renderTimeline()); // Заполняю таймлайн
-
-		// Инициализация попап
-		_.$popup.switchPopup({
-			btnClass: 'js-tgl-meeting-popup',
-			duration: 300
-		});
-
-		// Инициализация счетчика
-		_.$counter.formfieldCounter({
-			value: 1,
-			min: 1,
-			max: 24,
-			plusSelector: '.form-settings__count-plus',
-			minusSelector: '.form-settings__count-minus',
-			inputSelector: '.form-settings__hour'
-		});
 
 		// Применение настроек в форме попапа
 		_.$popupFormSubmit.on('click', function(e) {
 			e.preventDefault();
 
-			var inputId = _.$popupFormEditId.val();
+			var intervalId = _.$popupFormEditId.val();
+			var timelineId = _.$popupFormTimelintId.val();
 
-			if( inputId === '' ) {
+			if( state.timelineId !== timelineId ) return false;
+			if( intervalId === '' ) {
 				_.renderNewSequence({
 					id: '',
 					from: +_.$popupFormTime.val(),
@@ -281,7 +419,7 @@ $(function() {
 				var prevState = JSON.parse(_.$popupFormPrevState.val());
 
 				_.updateNextState({
-					id: inputId,
+					id: intervalId,
 					from: +_.$popupFormTime.val(),
 					to: +_.$popupFormTime.val() + +_.$popupFormHour.val(),
 					place: +_.$popupFormPeopleCount.val()
@@ -296,6 +434,9 @@ $(function() {
 			e.preventDefault();
 
 			var inputId = _.$popupFormEditId.val();
+			var timelineId = _.$popupFormTimelintId.val();
+
+			if( state.timelineId !== timelineId ) return false;
 			if( inputId !== '' ) {
 				_.removeSequence(inputId);
 			}
@@ -354,11 +495,13 @@ $(function() {
 
 	Timeline.prototype.booking = function(time) {
 		var _ = this;
+		var state = _.store.getState();
 
 		_.$popupFormTime.val(time);
 		
 		// Обнуление состояний
 		_.$popupFormEditId.val(''); // id текущего интервала
+		_.$popupFormTimelintId.val(state.timelineId); // id текущего таймлайна
 		_.$popupFormTime.val(time); // Начало интервала
 		_.$counter.formfieldCounter('setOption', 'value', '1'); // Кол-во часов в интервале
 		window.updateFormselect(_.$popupFormParentPeopleCount) // Количество мест
@@ -503,6 +646,7 @@ $(function() {
 
 			// Устанавливаю текущие значения в попап
 			_.$popupFormEditId.val(sequenceID); // id текущего интервала
+			_.$popupFormTimelintId.val(state.timelineId); // id текущего таймлайна
 			_.$popupFormTime.val(returnTime); // Начало интервала
 			_.$counter.formfieldCounter('setOption', 'value', returnCount); // Кол-во часов в интервале
 			window.updateFormselect(_.$popupFormParentPeopleCount, nextStateInterval.place) // Количество мест
@@ -676,7 +820,6 @@ $(function() {
 
 		return resultTimeline;
 	}
-
 	
 	Timeline.prototype.generateSequenceId = function() {
 		return 'xxxxxxxxxxxxxxxxxxxx'.replace( /[xy]/g, function(c) {
@@ -703,16 +846,18 @@ $(function() {
 		}
 	}
 
-	new Timeline('.timeline-1', {
-		data: [
-			{
-				from: '9',
-				to: '12'
-			}
-		],
-		update: function(state) {
-			console.log(state);
-		}
+	$('.meeting-rooms-form-popup').switchPopup({
+		btnClass: 'js-tgl-meeting-popup',
+		duration: 300
+	});
+
+	$('.js-time-counter').formfieldCounter({
+		value: 1,
+		min: 1,
+		max: 24,
+		plusSelector: '.form-settings__count-plus',
+		minusSelector: '.form-settings__count-minus',
+		inputSelector: '.form-settings__hour'
 	});
 
 });
