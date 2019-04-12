@@ -121,7 +121,7 @@ $(function() {
 
 	var bookedMeetingRoom = [
 		{
-			date: '1554930000000',
+			date: '1555016400000',
 			locationId: 'dinamo',
 			meetingRoomId: 0,
 			time: [
@@ -130,8 +130,8 @@ $(function() {
 					to: 5
 				},
 				{
-					from: 7,
-					to: 8
+					from: 8,
+					to: 9
 				},
 				{
 					from: 12,
@@ -140,7 +140,7 @@ $(function() {
 			]
 		},
 		{
-			date: '1554930000000',
+			date: '1555016400000',
 			locationId: 'dinamo',
 			meetingRoomId: 2,
 			time: [
@@ -170,6 +170,10 @@ $(function() {
 			_.locationData = settings.locationData;
 
 			_.$meetingRoomCards = $('.meeting-rooms__cards');
+			_.$meetingRoomHint = $('.meeting-rooms__hint');
+			_.$meetingRoomRightCard = $('.meeting-rooms__right-card');
+			_.$meetingRoomRightCards = $('.right-card__blocks');
+
 			_.$selectMeetingRoom = $('.select-negotiation__select_meeting-room');
 			_.$selectDate = $('.select-negotiation__select_date');
 			_.$selectAmountPeople = $('.select-negotiation__select_amount-people');
@@ -182,7 +186,8 @@ $(function() {
 					'date': '',
 					'amount_people': ''
 				},
-				bookedMeetingRoom: []
+				bookedMeetingRoom: [],
+				reservedMeetingRoom: []
 			});
 
 			_.unsubscribe = _.store.subscribe(function () {
@@ -212,7 +217,7 @@ $(function() {
 			_.renderMeetingRoomCards();
 		});
 
-		console.log(_.store.getState());
+		_.$meetingRoomRightCard.css('display', 'none');
 	}
 
 	BookingMeetingRoom.prototype.update = function() {
@@ -245,6 +250,16 @@ $(function() {
 		});
 	}
 
+	// Обновление состояния зарезервированных переговорок
+	BookingMeetingRoom.prototype.updateReservedMeetingRoom = function(data) {
+		var _ = this;
+
+		_.store.dispatch({
+			type: 'UPDATE_RESERVED_MEETING_ROOM',
+			payload: data
+		});
+	}
+
 	BookingMeetingRoom.prototype.getInitFilterProps = function() {
 		var _ = this;
 
@@ -270,7 +285,7 @@ $(function() {
 
 		_.$meetingRoomCards.empty();
 
-		// console.log(_.locationData[state.filter['meeting_room']])
+		if( typeof _.locationData[state.filter['meeting_room']] === 'undefined' ) return false;
 		_.locationData[state.filter['meeting_room']].forEach(function(location) {
 			if( +location.amountPeople.to === +state.filter['amount_people'] ) {
 				location.meetingRoom.forEach(function(item) {
@@ -309,27 +324,90 @@ $(function() {
 		$cardPriceList1.append([$cardPriceList1Variant, $cardPriceList1Price]);
 		$cardPriceList2.append([$cardPriceList2Variant, $cardPriceList2Price]);
 
-		console.log(state.filter['date']);
-		var timelineData = [];
+		var filterParseDate = +getDate('dd.mm.yy', state.filter['date']);
+		var bookingData = [];
+		var reservedData = [];
 		state.bookedMeetingRoom.forEach(function(item) {
-			console.log(item);
 			if( item.meetingRoomId === d.id ) {
-				console.log(item.date, +getDate('dd.mm.yy', state.filter['date']));
-				if( item.date === +getDate('dd.mm.yy', state.filter['date']) ) {
-					timelineData = item.time;
+				if( +item.date === filterParseDate ) {
+					bookingData = item.time;
+				}
+			}
+		});
+		state.reservedMeetingRoom.forEach(function(item) {
+			if( item.meetingRoomId === d.id ) {
+				if( +item.date === filterParseDate ) {
+					reservedData = item.time;
 				}
 			}
 		});
 
 		new Timeline($cardTimeline, {
 			id: state.filter['meeting_room'] + '_' + d.id,
-			data: timelineData,
-			update: function(state) {
-				console.log(state);
+			booking: bookingData,
+			reserved: reservedData,
+			update: function(time) {
+				_.updateReservedMeetingRoom({
+					locationId: state.filter['meeting_room'],
+					meetingRoomId: d.id,
+					date: ''+filterParseDate,
+					time: time
+				});
 			}
 		});
 
 		return $card;
+	}
+
+	BookingMeetingRoom.prototype.updateReservedCards = function() {
+		var _ = this;
+		var state = _.store.getState();
+
+		
+	}
+
+	BookingMeetingRoom.prototype.renderReservedCard = function() {
+		var _ = this;
+
+		var d = {
+			name: 'Динамо #5',
+			date: '1555016400000',
+			from: 5,
+			to: 6,
+			amountPeople: 8
+		}
+
+		function twoNumber(n) {
+			return n < 10 ? '0'+n : n;
+		}
+
+		var month = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+		var date = new Date(d.date);
+		var stringDay = twoNumber(date.getDate());
+		var stringMonth = month[date.getMonth()];
+		var stringYear = date.getFullYear();
+		var stringTimeFrom = twoNumber(d.from) + ':00';
+		var stringTimeTo = twoNumber(d.to) + ':00';
+		var stringFullTimeFrom = stringDay + ' ' + stringMonth + ' ' + stringYear + ', ' + stringTimeFrom;
+		var stringFullTimeTo = stringDay + ' ' + stringMonth + ' ' + stringYear + ', ' + stringTimeTo;
+
+		var $block = $('<div class="right-card__block" />');
+		var $blockRow1 = $('<div class="right-card__field" />');
+		var $blockRow1span1 = $('<span>Переговорная</span>');
+		var $blockRow1span2 = $('<span>'+ d.name +'</span>');
+		var $blockRow2 = $('<div class="right-card__field" />');
+		var $blockRow2span1 = $('<span>Начало аренды</span>');
+		var $blockRow2span2 = $('<span>'+ stringFullTimeFrom +'</span>');
+		var $blockRow3 = $('<div class="right-card__field" />');
+		var $blockRow3span1 = $('<span>Окончание аренды</span>');
+		var $blockRow3span2 = $('<span>'+ stringFullTimeTo +'</span>');
+
+		$block.append([$blockRow1, $blockRow2, $blockRow3]);
+		$blockRow1.append([$blockRow1span1, $blockRow1span2]);
+		$blockRow2.append([$blockRow2span1, $blockRow2span2]);
+		$blockRow3.append([$blockRow3span1, $blockRow3span2]);
+
+		return $block;
 	}
 
 	BookingMeetingRoom.prototype.reducer = function(state, action) {
@@ -337,6 +415,26 @@ $(function() {
 			case 'UPDATE_BOOKED_MEETING_ROOM':
 				return $.extend({}, state, {
 					bookedMeetingRoom: action.payload
+				});
+			case 'UPDATE_RESERVED_MEETING_ROOM':
+				var newState = [];
+				if( state.reservedMeetingRoom.length ) {
+					newState = state.reservedMeetingRoom.map(function(item) {
+						if( item.locationId === action.payload.locationId &&
+							item.meetingRoomId === action.payload.meetingRoomId &&
+							item.date === action.payload.date ) {
+							var newItem = $.extend({}, item);
+							newItem.time = $.extend([], action.payload.time);
+							return newItem;
+						} else {
+							return item;
+						}
+					});
+				} else {
+					newState.push(action.payload);
+				}
+				return $.extend({}, state, {
+					reservedMeetingRoom: newState
 				});
 			case 'UPDATE_FILTER_PROP':
 				var newState = {};
@@ -348,10 +446,6 @@ $(function() {
 				return state;
 		}
 	}
-
-	new BookingMeetingRoom({
-		locationData: locationData
-	});
 
 	// Компонента таймлайна
 	var Timeline = window.Timeline || {};
@@ -377,8 +471,8 @@ $(function() {
 
 			_.store = createStore(_.reducer, {
 				timelineId: settings.id,
-				startState: settings.data,
-				nextState: []
+				startState: settings.booking,
+				nextState: settings.reserved
 			});
 
 			_.timelineUpdate = function(nextState) {
@@ -397,6 +491,10 @@ $(function() {
 	Timeline.prototype.init = function() {
 		var _ = this;
 		var state = _.store.getState();
+
+		if( state.nextState.length ) {
+			_.renderSequenceFromState();
+		}
 
 		_.$timeline.append(_.renderTimeline()); // Заполняю таймлайн
 
@@ -436,9 +534,13 @@ $(function() {
 			var inputId = _.$popupFormEditId.val();
 			var timelineId = _.$popupFormTimelintId.val();
 
-			if( state.timelineId !== timelineId ) return false;
+			if( state.timelineId !== timelineId ) {
+				_.$popup.switchPopup('close');
+				return false;
+			}
 			if( inputId !== '' ) {
 				_.removeSequence(inputId);
+				_.$popup.switchPopup('close');
 			}
 		});
 	}
@@ -846,18 +948,24 @@ $(function() {
 		}
 	}
 
-	$('.meeting-rooms-form-popup').switchPopup({
-		btnClass: 'js-tgl-meeting-popup',
-		duration: 300
-	});
-
-	$('.js-time-counter').formfieldCounter({
-		value: 1,
-		min: 1,
-		max: 24,
-		plusSelector: '.form-settings__count-plus',
-		minusSelector: '.form-settings__count-minus',
-		inputSelector: '.form-settings__hour'
+	$(document).ready(function() {
+		$('.meeting-rooms-form-popup').switchPopup({
+			btnClass: 'js-tgl-meeting-popup',
+			duration: 300
+		});
+	
+		$('.js-time-counter').formfieldCounter({
+			value: 1,
+			min: 1,
+			max: 24,
+			plusSelector: '.form-settings__count-plus',
+			minusSelector: '.form-settings__count-minus',
+			inputSelector: '.form-settings__hour'
+		});
+	
+		new BookingMeetingRoom({
+			locationData: locationData
+		});
 	});
 
 });

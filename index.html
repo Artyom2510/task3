@@ -73,7 +73,7 @@
 		<div class="select-negotiation__select select-negotiation__select_date form-wraper">
 			<label for="datepicker" class="form-wraper__label">Дата</label>
 			<div class="form-wraper__box formselect-radio__value form-box">
-				<input type="text" class="datepicker bmr-filter-prop" id="datepicker" autocomplete="off" readonly>
+				<input type="text" class="datepicker bmr-filter-prop" name="date" id="datepicker" autocomplete="off" readonly>
 			</div>
 			<label for="datepicker" type="button" class="form-wraper__calendar">
 				<img src="img/calendar.svg">
@@ -82,18 +82,18 @@
 		<div class="select-negotiation__select select-negotiation__select_amount-people form-wraper formselect-radio js-form-select">
 			<label for="" class="form-wraper__label">Кол-во человек</label>
 			<div class="form-wraper__box formselect-radio__value form-box" title="10 человек">
-				<span>10 человек</span>
+				<span>до 3 человек</span>
 			</div>
 			<button type="button" class="form-wraper__button formselect-radio__arrow">
 			</button>
-			<input type="hidden" name="amount_people" class="formselect-radio__input form-wraper__input bmr-filter-prop" value="10">
+			<input type="hidden" name="amount_people" class="formselect-radio__input form-wraper__input bmr-filter-prop" value="3">
 			<ul class="formselect-radio__list">
 				<li class="formselect-radio__item">
 					<input type="radio" id="amount-people-3" value="3" name="amount-people">
 					<label for="amount-people-3">до 3 человек</label>
 				</li>
 				<li class="formselect-radio__item">
-					<input type="radio" id="amount-people-8" value="8" name="amount-people">
+					<input type="radio" id="amount-people-8" value="8" name="amount-people" checked>
 					<label for="amount-people-8">до 8 человек</label>
 				</li>
 				<li class="formselect-radio__item">
@@ -112,32 +112,35 @@
 			<p class="meeting-rooms__hint">Выберите локацию, дату, укажите необходимое кол-во человек, отметьте подходящее вам свободное.<br>Резиденты SOK могут забронировать переговорную по специальным ценам.</p>
 			<div class="meeting-rooms__right-card right-card">
 				<h2 class="right-card__title">Бронирование</h2>
-				<div class="right-card__block">
-					<div class="right-card__field">
-						<span>Переговорная</span>
-						<span>Динамо</span>
+
+				<div class="right-card__blocks">
+					<div class="right-card__block">
+						<div class="right-card__field">
+							<span>Переговорная</span>
+							<span>Динамо</span>
+						</div>
+						<div class="right-card__field">
+							<span>Начало аренды</span>
+							<span>26 марта 2019, 18:00</span>
+						</div>
+						<div class="right-card__field">
+							<span>Окончание аренды</span>
+							<span>26 марта 2019, 18:00</span>
+						</div>
 					</div>
-					<div class="right-card__field">
-						<span>Начало аренды</span>
-						<span>26 марта 2019, 18:00</span>
-					</div>
-					<div class="right-card__field">
-						<span>Окончание аренды</span>
-						<span>26 марта 2019, 18:00</span>
-					</div>
-				</div>
-				<div class="right-card__block">
-					<div class="right-card__field">
-						<span>Переговорная</span>
-						<span>Динамо</span>
-					</div>
-					<div class="right-card__field">
-						<span>Начало аренды</span>
-						<span>26 марта 2019, 18:00</span>
-					</div>
-					<div class="right-card__field">
-						<span>Окончание аренды</span>
-						<span>26 марта 2019, 18:00</span>
+					<div class="right-card__block">
+						<div class="right-card__field">
+							<span>Переговорная</span>
+							<span>Динамо</span>
+						</div>
+						<div class="right-card__field">
+							<span>Начало аренды</span>
+							<span>26 марта 2019, 18:00</span>
+						</div>
+						<div class="right-card__field">
+							<span>Окончание аренды</span>
+							<span>26 марта 2019, 18:00</span>
+						</div>
 					</div>
 				</div>
 				<div class="right-card__to-pay">
@@ -160,32 +163,24 @@
 					<div class="meeting-rooms-form__settings form-settings">
 						<div class="select-negotiation__select form-wraper formselect-radio meeting-rooms-form__people-count js-form-select">
 							<span class="form-wraper__label">Кол-во человек</span>
-							<div class="form-wraper__box formselect-radio__value form-box" title="10 человек">
-								<span>10 человек</span>
+							<div class="form-wraper__box formselect-radio__value form-box" title="до 3 человек">
+								<span>до 3 человек</span>
 							</div>
 							<button type="button" class="form-wraper__button formselect-radio__arrow">
 							</button>
-							<input type="hidden" name="people_count" class="formselect-radio__input form-settings__people-count" value="10">
+							<input type="hidden" name="people_count" class="formselect-radio__input form-settings__people-count" value="3">
 							<ul class="formselect-radio__list">
 								<li class="formselect-radio__item">
-									<input type="radio" id="people-count-10" value="10" name="people-count">
-									<label for="people-count-10">10 человек</label>
+									<input type="radio" id="people-count-3" value="3" name="people-count">
+									<label for="people-count-3">до 3 человек</label>
 								</li>
 								<li class="formselect-radio__item">
-									<input type="radio" id="people-count-20" value="20" name="people-count">
-									<label for="people-count-20">20 человек</label>
+									<input type="radio" id="people-count-8" value="8" name="people-count">
+									<label for="people-count-8">до 8 человек</label>
 								</li>
 								<li class="formselect-radio__item">
-									<input type="radio" id="people-count-30" value="30" name="people-count">
-									<label for="people-count-30">30 человек</label>
-								</li>
-								<li class="formselect-radio__item">
-									<input type="radio" id="people-count-40" value="40" name="people-count">
-									<label for="people-count-40">40 человек</label>
-								</li>
-								<li class="formselect-radio__item">
-									<input type="radio" id="people-count-50" value="50" name="people-count">
-									<label for="people-count-50">50 человек</label>
+									<input type="radio" id="people-count-12" value="12" name="people-count">
+									<label for="people-count-12">до 12 человек</label>
 								</li>
 							</ul>
 						</div>
