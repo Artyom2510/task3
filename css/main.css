@@ -402,6 +402,7 @@ input[type="text"] {
 }
 
 .meeting-rooms__right {
+	position: relative;
 	width: 50%;
 	padding: 90px 50px 50px;
 	-webkit-box-sizing: border-box;
@@ -410,15 +411,20 @@ input[type="text"] {
 
 .meeting-rooms__hint {
 	display: block;
+	margin-bottom: 25px;
 	font-size: 16px;
 	line-height: 24px;
 }
 
 .meeting-rooms__right-card {
-	position: -webkit-sticky;
-	position: sticky;
+	position: relative;
+	z-index: 1;
 	top: 0;
 	width: 100%;
+}
+
+.meeting-rooms__right-card.fixed {
+	position: fixed;
 }
 
 @media (max-width: 1000px) {
