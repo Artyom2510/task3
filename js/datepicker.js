@@ -1,5 +1,6 @@
 $(document).ready(function(){
-	$('.datepicker').datepicker({
+	var datepicker = $('.datepicker');
+	datepicker.datepicker({
 		beforeShow: function(){
 			setTimeout(function(){
 					$('.ui-datepicker').css('z-index', 4);
@@ -14,5 +15,13 @@ $(document).ready(function(){
 		selectOtherMonths: true,
 		minDate: 0,
 	});
-	$('.datepicker').inputmask();
+
+	var newDate = new Date();
+	var day = newDate.getDate();
+	var month = newDate.getMonth() + 1;
+	var year = newDate.getFullYear();
+
+	var dateString = ( day < 10 ? '0'+day : day ) + '.' + ( month < 10 ? '0'+month : month ) + '.' + year;
+	datepicker.datepicker('setDate', dateString);
+
 });
