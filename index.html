@@ -110,45 +110,17 @@
 		</div>
 		<div class="meeting-rooms__right">
 			<p class="meeting-rooms__hint">Выберите локацию, дату, укажите необходимое кол-во человек, отметьте подходящее вам свободное.<br>Резиденты SOK могут забронировать переговорную по специальным ценам.</p>
-			<div class="meeting-rooms__right-card right-card">
+			<form action="/" method="POST" class="meeting-rooms__right-card right-card">
 				<h2 class="right-card__title">Бронирование</h2>
 
-				<div class="right-card__blocks">
-					<div class="right-card__block">
-						<div class="right-card__field">
-							<span>Переговорная</span>
-							<span>Динамо</span>
-						</div>
-						<div class="right-card__field">
-							<span>Начало аренды</span>
-							<span>26 марта 2019, 18:00</span>
-						</div>
-						<div class="right-card__field">
-							<span>Окончание аренды</span>
-							<span>26 марта 2019, 18:00</span>
-						</div>
-					</div>
-					<div class="right-card__block">
-						<div class="right-card__field">
-							<span>Переговорная</span>
-							<span>Динамо</span>
-						</div>
-						<div class="right-card__field">
-							<span>Начало аренды</span>
-							<span>26 марта 2019, 18:00</span>
-						</div>
-						<div class="right-card__field">
-							<span>Окончание аренды</span>
-							<span>26 марта 2019, 18:00</span>
-						</div>
-					</div>
-				</div>
+				<div class="right-card__blocks"></div>
 				<div class="right-card__to-pay">
 					<span>К оплате</span>
-					<span>10 500 руб.</span>
+					<input type="hidden" name="full-price" />
+					<span></span>
 				</div>
-				<button class="btn gray-btn">Перейти к оформлению</button>
-			</div>
+				<button type="submit" class="btn gray-btn">Перейти к оформлению</button>
+			</form>
 		</div>
 	</section>
 	<!-- Popup -->

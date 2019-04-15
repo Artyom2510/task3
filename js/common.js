@@ -121,7 +121,7 @@ $(function() {
 
 	var bookedMeetingRoom = [
 		{
-			date: '1555016400000',
+			date: '1555275600000',
 			locationId: 'dinamo',
 			meetingRoomId: 0,
 			time: [
@@ -140,7 +140,7 @@ $(function() {
 			]
 		},
 		{
-			date: '1555016400000',
+			date: '1555275600000',
 			locationId: 'dinamo',
 			meetingRoomId: 2,
 			time: [
@@ -173,6 +173,7 @@ $(function() {
 			_.$meetingRoomHint = $('.meeting-rooms__hint');
 			_.$meetingRoomRightCard = $('.meeting-rooms__right-card');
 			_.$meetingRoomRightCards = $('.right-card__blocks');
+			_.$meetingRoomRightPrice = $('.right-card__to-pay');
 
 			_.$selectMeetingRoom = $('.select-negotiation__select_meeting-room');
 			_.$selectDate = $('.select-negotiation__select_date');
@@ -217,14 +218,43 @@ $(function() {
 			_.renderMeetingRoomCards();
 		});
 
+		// setInterval(function() {
+		// 	_.updateBookedMeetingRoom();
+		// }, 60000);
+
 		_.$meetingRoomRightCard.css('display', 'none');
+
+		_.$meetingRoomRightCard.on('submit', function(e) {
+			e.preventDefault();
+			_.submit();
+		});
 	}
 
 	BookingMeetingRoom.prototype.update = function() {
 		var _ = this;
-		var state = _.store.getState();
 
-		console.log(state);
+		_.updateReservedCards();
+	}
+	
+	// Отправка формы
+	BookingMeetingRoom.prototype.submit = function() {
+		var _ = this;
+
+		var url = _.$meetingRoomRightCard.attr('action');
+		var type = _.$meetingRoomRightCard.attr('method');
+		var formData = new FormData(_.$meetingRoomRightCard[0]);
+
+		$.ajax({
+			url: url,
+			data: formData,
+			processData: false,
+			contentType: false,
+			type: type,
+			dataType: 'JSON',
+			success: function(data) {
+				console.log('success', data);
+			}
+		});
 	}
 
 	BookingMeetingRoom.prototype.updateFilter = function(prop, value) {
@@ -363,26 +393,114 @@ $(function() {
 		var _ = this;
 		var state = _.store.getState();
 
+		if( !state.reservedMeetingRoom.length ) return;
+
+		var isEmpty = false;
+		state.reservedMeetingRoom.forEach(function(meetingRoom) {
+			if( !meetingRoom.time.length ) {
+				isEmpty = true;
+				return;
+			}
+		});
+
+		if( isEmpty ) {
+			if( _.$meetingRoomHint.css('display') === 'none' ) {
+				_.$meetingRoomHint.css('display', 'block');
+				_.$meetingRoomRightCard.css('display', 'none');
+			}
+
+			return;
+		}
+
+		var reservedMeetingRoom = [];
+
+		state.reservedMeetingRoom.forEach(function(meetingRoom) {
+			var meetingRoomName = '';
+			_.locationData[meetingRoom.locationId].forEach(function(location) {
+				location.meetingRoom.forEach(function(mr) {
+					if( mr.id === meetingRoom.meetingRoomId ) {
+						meetingRoomName = mr.name;
+					}
+				});
+			});
+
+			meetingRoom.time.forEach(function(interval) {
+				reservedMeetingRoom.push({
+					locationId: meetingRoom.locationId,
+					meetingRoomId: meetingRoom.meetingRoomId,
+					name: meetingRoomName,
+					date: meetingRoom.date,
+					from: interval.from,
+					to: interval.to,
+					amountPeople: interval.place
+				});
+			});
+		});
+
+		_.$meetingRoomHint.css('display', 'none');
+		_.$meetingRoomRightCard.css('display', 'block');
 		
+		_.$meetingRoomRightCards.empty();
+
+		var fullPrice = 0;
+		reservedMeetingRoom.forEach(function(meetingRoom) {
+			_.$meetingRoomRightCards.append(_.renderReservedCard(meetingRoom));
+			fullPrice += _.calculate(meetingRoom);
+		});
+
+		function renderPriceString(price) {
+			return String(price).split('').reverse().map(function(char, id) {
+				if( (id + 1) % 3 === 0 ) {
+					return ' '+char;
+				} else {
+					return char;
+				}
+			}).reverse().join('');
+		}
+
+		var stringPrice = renderPriceString(fullPrice) + ' руб.';
+		_.$meetingRoomRightPrice.children('span').last().text(stringPrice);
+		_.$meetingRoomRightPrice.children('input').val(stringPrice);
 	}
 
-	BookingMeetingRoom.prototype.renderReservedCard = function() {
+	BookingMeetingRoom.prototype.calculate = function(d) {
 		var _ = this;
 
-		var d = {
-			name: 'Динамо #5',
-			date: '1555016400000',
-			from: 5,
-			to: 6,
-			amountPeople: 8
+		var resultPrice = 0;
+		var prices = {};
+
+		_.locationData[d.locationId].forEach(function(location) {
+			location.meetingRoom.forEach(function(mr) {
+				if( mr.id === d.meetingRoomId ) {
+					prices = $.extend({}, mr.prices);
+				}
+			});
+		});
+
+		var time = d.to - d.from;
+
+		if( time >= 8 ) {
+			resultPrice += prices.meetingRoomFullDay;
+			resultPrice += prices.meetingRoomNextTime * (time - 8);
+		} else if( time > 2 ) {
+			resultPrice += prices.meetingRoomFirstTime * 2;
+			resultPrice += prices.meetingRoomNextTime * (time - 2);
+		} else {
+			resultPrice += prices.meetingRoomFirstTime * time;
 		}
+
+		return resultPrice;
+	}
+
+	BookingMeetingRoom.prototype.renderReservedCard = function(d) {
+		var _ = this;
 
 		function twoNumber(n) {
 			return n < 10 ? '0'+n : n;
 		}
 
 		var month = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
-		var date = new Date(d.date);
+		var date = new Date(+d.date);
 		var stringDay = twoNumber(date.getDate());
 		var stringMonth = month[date.getMonth()];
 		var stringYear = date.getFullYear();
@@ -401,8 +519,9 @@ $(function() {
 		var $blockRow3 = $('<div class="right-card__field" />');
 		var $blockRow3span1 = $('<span>Окончание аренды</span>');
 		var $blockRow3span2 = $('<span>'+ stringFullTimeTo +'</span>');
+		var $blockInput = $('<input type="hidden" value="'+ d.name +' / '+ d.amountPeople +' чел. / '+ stringFullTimeFrom + ' - ' + stringFullTimeTo +'" name="interval[\''+ d.locationId +'\'][\''+ d.meetingRoomId +'\']" />');
 
-		$block.append([$blockRow1, $blockRow2, $blockRow3]);
+		$block.append([$blockRow1, $blockRow2, $blockRow3, $blockInput]);
 		$blockRow1.append([$blockRow1span1, $blockRow1span2]);
 		$blockRow2.append([$blockRow2span1, $blockRow2span2]);
 		$blockRow3.append([$blockRow3span1, $blockRow3span2]);
@@ -419,17 +538,22 @@ $(function() {
 			case 'UPDATE_RESERVED_MEETING_ROOM':
 				var newState = [];
 				if( state.reservedMeetingRoom.length ) {
+					var isUpdate = false;
 					newState = state.reservedMeetingRoom.map(function(item) {
 						if( item.locationId === action.payload.locationId &&
 							item.meetingRoomId === action.payload.meetingRoomId &&
 							item.date === action.payload.date ) {
 							var newItem = $.extend({}, item);
 							newItem.time = $.extend([], action.payload.time);
+							isUpdate = true;
 							return newItem;
 						} else {
 							return item;
 						}
 					});
+					if( !isUpdate ) {
+						newState.push(action.payload);
+					}
 				} else {
 					newState.push(action.payload);
 				}
@@ -451,10 +575,10 @@ $(function() {
 	var Timeline = window.Timeline || {};
 
 	Timeline = (function() {
-		function Timeline($selector, settings) {
+		function Timeline($element, settings) {
 			var _ = this;
 			
-			_.$timeline = $selector;
+			_.$timeline = $element;
 			_.$popup = $('.meeting-rooms-form-popup');
 			_.$counter = $('.js-time-counter');
 
@@ -497,6 +621,21 @@ $(function() {
 		}
 
 		_.$timeline.append(_.renderTimeline()); // Заполняю таймлайн
+
+		_.$timeline.bind('mousewheel DOMMouseScroll', function(e) {
+			var scrollTo = null;
+	
+			if( e.type == 'mousewheel' ) {
+				scrollTo = (e.originalEvent.wheelDelta * -1);
+			} else if( e.type == 'DOMMouseScroll' ) {
+				scrollTo = 40 * e.originalEvent.detail;
+			}
+	
+			if( scrollTo ) {
+				e.preventDefault();
+				$(this).scrollLeft(scrollTo + $(this).scrollLeft());
+			}
+		});
 
 		// Применение настроек в форме попапа
 		_.$popupFormSubmit.on('click', function(e) {
@@ -791,16 +930,22 @@ $(function() {
 			var nextStateInterval = state.nextState.filter(function(interval) {
 				if( interval.id === sequenceID ) return true;
 			})[0];
+			
+			if( sequenceIsDown || sequenceStartIsDown || sequenceEndIsDown ) {
+				if( sequencePositionLeft < 0 ) { // Если ушли за пределы в лево
+					sequenceWidth += sequencePositionLeft;
+					sequencePositionLeft = 0;
+				}
+				if( sequencePositionLeft + sequenceWidth > sequenceWidthOne * 24 ) { // Если ушли за пределы в право
+					sequenceWidth -= (sequencePositionLeft + sequenceWidth) - (sequenceWidthOne * 24);
+				}
 
-			if( sequenceIsDown || sequenceStartIsDown ) {
 				sequencePositionLeft = Math.round(sequencePositionLeft / sequenceWidthOne) * sequenceWidthOne;
 				$sequence[0].style.left = sequencePositionLeft + 'px';
-			}
-			if( sequenceEndIsDown || sequenceStartIsDown ) {
+
 				sequenceWidth = Math.round(sequenceWidth / sequenceWidthOne) * sequenceWidthOne;
 				$sequence[0].style.width = sequenceWidth + 'px';
-			}
-			if( sequenceIsDown || sequenceStartIsDown || sequenceEndIsDown ) {
+
 				returnTime = sequencePositionLeft / sequenceWidthOne;
 				returnCount = sequenceWidth / sequenceWidthOne;
 
