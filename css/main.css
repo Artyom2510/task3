@@ -63,7 +63,7 @@ section {
 	text-decoration: none;
 	text-align: center;
 	color: #434343;
-	margin: 0 15px;
+	margin: 0;
 	border: 2px solid transparent;
 	cursor: pointer;
 	outline: none !important;
@@ -586,6 +586,10 @@ input[type="text"] {
 	width: 100%;
 	max-width: 700px;
 	overflow-x: scroll;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 .timeline__labels {
@@ -1011,9 +1015,9 @@ input[type="text"] {
 	justify-content: center;
 	width: 100%;
 	height: 100vh;
-	-webkit-transition: opacity 3s ease;
-	-o-transition: opacity 3s ease;
-	transition: opacity 3s ease;
+	-webkit-transition: opacity .3s ease;
+	-o-transition: opacity .3s ease;
+	transition: opacity .3s ease;
 }
 
 .meeting-rooms-form-popup.display {

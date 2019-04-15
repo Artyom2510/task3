@@ -10,8 +10,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-	<!--	<meta name="google-site-verification" content="" />-->
-	<!--	<meta name="yandex-verification" content="" />-->
+	<link rel="stylesheet" href="css/main.css">
 
 	<meta property="og:image" content="path/to/image.jpg">
 
@@ -31,8 +30,11 @@
 	
 	<script src="js/jquery-3.2.1.min.js"></script>
 	<script src="js/jquery-ui.min.js"></script>
-	<script src="js/jquery.smoothscroll.js"></script>
 	<script src="js/datepicker.js"></script>
+	<script src="js/switchPopup.js"></script>
+	<script src="js/formselect.js"></script>
+	<script src="js/formfieldCounter.js"></script>
+	<script src="js/common.js"></script>
 </head>
 
 <body>
@@ -41,66 +43,62 @@
 		<h1 class="rent-negotiation__title rent-negotiation-title">Арендуйте переговорную комнату в SOK</h1>
 	</section>
 	<section class="select-negotiation">
-		<div class="select-negotiation__select form-wraper formselect-radio">
+		<div class="select-negotiation__select select-negotiation__select_meeting-room form-wraper formselect-radio js-form-select">
 			<label for="" class="form-wraper__label">Переговорная</label>
-			<div class="form-wraper__box formselect-radio__value form-box" title="Динамо" id="">
-					<span>Динамо</span>
+			<div class="form-wraper__box formselect-radio__value form-box" title="Динамо">
+				<span>Динамо</span>
 			</div>
 			<button type="button" class="form-wraper__button formselect-radio__arrow">
 			</button>
-			<input type="hidden" name="room_category" class="form-wraper__input" value="7">
+			<input type="hidden" name="meeting_room" class="formselect-radio__input form-wraper__input bmr-filter-prop" value="dinamo">
 			<ul class="formselect-radio__list">
 				<li class="formselect-radio__item">
-					<input type="radio" id="category-room-7" value="7" name="category-room">
-					<label for="category-room-7">Переговорная2</label>
+					<input type="radio" id="meeting-room-1" value="dinamo" name="meeting-room">
+					<label for="meeting-room-1">Динамо</label>
 				</li>
 				<li class="formselect-radio__item">
-					<input type="radio" id="category-room-19" value="19" name="category-room">
-					<label for="category-room-19">Переговорная3</label>
+					<input type="radio" id="meeting-room-2" value="2" name="meeting-room">
+					<label for="meeting-room-2">Переговорная 2</label>
 				</li>
 				<li class="formselect-radio__item">
-					<input type="radio" id="category-room-20" value="20" name="category-room">
-					<label for="category-room-20">Переговорная4</label>
+					<input type="radio" id="meeting-room-3" value="3" name="meeting-room">
+					<label for="meeting-room-3">Переговорная 3</label>
 				</li>
 				<li class="formselect-radio__item">
-					<input type="radio" id="category-room-21" value="21" name="category-room">
-					<label for="category-room-21">Переговорная5</label>
+					<input type="radio" id="meeting-room-4" value="4" name="meeting-room">
+					<label for="meeting-room-4">Переговорная 4</label>
 				</li>
 			</ul>
 		</div>
-		<div class="select-negotiation__select form-wraper">
+		<div class="select-negotiation__select select-negotiation__select_date form-wraper">
 			<label for="datepicker" class="form-wraper__label">Дата</label>
 			<div class="form-wraper__box formselect-radio__value form-box">
-				<input type="text" class="datepicker" id="datepicker" autocomplete="off" readonly>
+				<input type="text" class="datepicker bmr-filter-prop" name="date" id="datepicker" autocomplete="off" readonly>
 			</div>
 			<label for="datepicker" type="button" class="form-wraper__calendar">
-				<img src="img/calendar.svg" alt="" class="">
+				<img src="img/calendar.svg">
 			</label>
 		</div>
-		<div class="select-negotiation__select form-wraper formselect-radio">
+		<div class="select-negotiation__select select-negotiation__select_amount-people form-wraper formselect-radio js-form-select">
 			<label for="" class="form-wraper__label">Кол-во человек</label>
-			<div class="form-wraper__box formselect-radio__value form-box" title="4 человека" id="">
-					<span>4 человека</span>
+			<div class="form-wraper__box formselect-radio__value form-box" title="10 человек">
+				<span>до 3 человек</span>
 			</div>
 			<button type="button" class="form-wraper__button formselect-radio__arrow">
 			</button>
-			<input type="hidden" name="room_category" class="form-wraper__input" value="7">
+			<input type="hidden" name="amount_people" class="formselect-radio__input form-wraper__input bmr-filter-prop" value="3">
 			<ul class="formselect-radio__list">
 				<li class="formselect-radio__item">
-					<input type="radio" id="category-room-7" value="7" name="category-room">
-					<label for="category-room-7">10 человек</label>
+					<input type="radio" id="amount-people-3" value="3" name="amount-people">
+					<label for="amount-people-3">до 3 человек</label>
 				</li>
 				<li class="formselect-radio__item">
-					<input type="radio" id="category-room-19" value="19" name="category-room">
-					<label for="category-room-19">20 человек</label>
+					<input type="radio" id="amount-people-8" value="8" name="amount-people" checked>
+					<label for="amount-people-8">до 8 человек</label>
 				</li>
 				<li class="formselect-radio__item">
-					<input type="radio" id="category-room-20" value="20" name="category-room">
-					<label for="category-room-20">30 человек</label>
-				</li>
-				<li class="formselect-radio__item">
-					<input type="radio" id="category-room-21" value="21" name="category-room">
-					<label for="category-room-21">40 человек</label>
+					<input type="radio" id="amount-people-12" value="12" name="amount-people">
+					<label for="amount-people-12">до 12 человек</label>
 				</li>
 			</ul>
 		</div>
@@ -108,355 +106,77 @@
 	<section class="meeting-rooms">
 		<div class="meeting-rooms__left">
 			<div class="meeting-rooms__title rent-negotiation-title">Переговорные комнаты</div>
-			<div class="meeting-rooms__card meeting-rooms-card">
-				<div class="meeting-rooms-card__top">
-					<a class="meeting-rooms-card__img-block" href="#">
-						<img src="img/location.png" alt="Location">
-						<div class="meeting-rooms-card__img-label">Ленинградский проспект, вл.36, к.5</div>
-					</a>
-					<div class="meeting-rooms-card__info">
-						<span class="meeting-rooms-card__name">Динамо</span>
-						<p class="meeting-rooms-card__desc">6 посадочных мест, общий стол, флипчарт с маркерами.</p>
-						<div class="meeting-rooms-card__price-list">
-							<span class="meeting-rooms-card__variant">Офис</span>
-							<span class="meeting-rooms-card__price">18 000 руб.</span>
-						</div>
-						<div class="meeting-rooms-card__price-list">
-							<span class="meeting-rooms-card__variant">Закрепленное рабочее место</span>
-							<span class="meeting-rooms-card__price">24 000 руб.</span>
-						</div>
-					</div>
-				</div>
-				<div class="meeting-rooms-card__timeline timeline">
-					<div class="timeline__labels">
-						<span class="timeline__label">00:00</span>
-						<span class="timeline__label">01:00</span>
-						<span class="timeline__label">02:00</span>
-						<span class="timeline__label">03:00</span>
-						<span class="timeline__label">04:00</span>
-						<span class="timeline__label">05:00</span>
-						<span class="timeline__label">06:00</span>
-						<span class="timeline__label">07:00</span>
-						<span class="timeline__label">08:00</span>
-						<span class="timeline__label">09:00</span>
-						<span class="timeline__label">10:00</span>
-						<span class="timeline__label">11:00</span>
-						<span class="timeline__label">12:00</span>
-						<span class="timeline__label">13:00</span>
-						<span class="timeline__label">14:00</span>
-						<span class="timeline__label">15:00</span>
-						<span class="timeline__label">16:00</span>
-						<span class="timeline__label">17:00</span>
-						<span class="timeline__label">18:00</span>
-						<span class="timeline__label">19:00</span>
-						<span class="timeline__label">20:00</span>
-						<span class="timeline__label">21:00</span>
-						<span class="timeline__label">22:00</span>
-						<span class="timeline__label">23:00</span>
-					</div>
-					<div class="timeline__sequence">
-						<span class="timeline__sequence-handle-start"></span>
-						<span class="timeline__sequence-handle-end"></span>
-					</div>
-					<div class="timeline__halves">
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half timeline__half_hold"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half timeline__half_hold"></span>
-						<span class="timeline__half timeline__half_hold"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-					</div>
-				</div>
-			</div>
-			<div class="meeting-rooms__card meeting-rooms-card">
-				<div class="meeting-rooms-card__top">
-					<a class="meeting-rooms-card__img-block" href="#">
-						<img src="img/location.png" alt="Location">
-						<div class="meeting-rooms-card__img-label">Ленинградский проспект, вл.36, к.5</div>
-					</a>
-					<div class="meeting-rooms-card__info">
-						<span class="meeting-rooms-card__name">Динамо</span>
-						<p class="meeting-rooms-card__desc">6 посадочных мест, общий стол, флипчарт с маркерами.</p>
-						<div class="meeting-rooms-card__price-list">
-							<span class="meeting-rooms-card__variant">Офис</span>
-							<span class="meeting-rooms-card__price">18 000 руб.</span>
-						</div>
-						<div class="meeting-rooms-card__price-list">
-							<span class="meeting-rooms-card__variant">Закрепленное рабочее место</span>
-							<span class="meeting-rooms-card__price">24 000 руб.</span>
-						</div>
-					</div>
-				</div>
-				<div class="meeting-rooms-card__timeline timeline">
-					<div class="timeline__labels">
-						<span class="timeline__label">00:00</span>
-						<span class="timeline__label">01:00</span>
-						<span class="timeline__label">02:00</span>
-						<span class="timeline__label">03:00</span>
-						<span class="timeline__label">04:00</span>
-						<span class="timeline__label">05:00</span>
-						<span class="timeline__label">06:00</span>
-						<span class="timeline__label">07:00</span>
-						<span class="timeline__label">08:00</span>
-						<span class="timeline__label">09:00</span>
-						<span class="timeline__label">10:00</span>
-						<span class="timeline__label">11:00</span>
-						<span class="timeline__label">12:00</span>
-						<span class="timeline__label">13:00</span>
-						<span class="timeline__label">14:00</span>
-						<span class="timeline__label">15:00</span>
-						<span class="timeline__label">16:00</span>
-						<span class="timeline__label">17:00</span>
-						<span class="timeline__label">18:00</span>
-						<span class="timeline__label">19:00</span>
-						<span class="timeline__label">20:00</span>
-						<span class="timeline__label">21:00</span>
-						<span class="timeline__label">22:00</span>
-						<span class="timeline__label">23:00</span>
-					</div>
-					<div class="timeline__sequence">
-						<span class="timeline__sequence-handle-start"></span>
-						<span class="timeline__sequence-handle-end"></span>
-					</div>
-					<div class="timeline__halves">
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half timeline__half_hold"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half timeline__half_hold"></span>
-						<span class="timeline__half timeline__half_hold"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-					</div>
-				</div>
-			</div>
-			<div class="meeting-rooms__card meeting-rooms-card">
-				<div class="meeting-rooms-card__top">
-					<a class="meeting-rooms-card__img-block" href="#">
-						<img src="img/location.png" alt="Location">
-						<div class="meeting-rooms-card__img-label">Ленинградский проспект, вл.36, к.5</div>
-					</a>
-					<div class="meeting-rooms-card__info">
-						<span class="meeting-rooms-card__name">Динамо</span>
-						<p class="meeting-rooms-card__desc">6 посадочных мест, общий стол, флипчарт с маркерами.</p>
-						<div class="meeting-rooms-card__price-list">
-							<span class="meeting-rooms-card__variant">Офис</span>
-							<span class="meeting-rooms-card__price">18 000 руб.</span>
-						</div>
-						<div class="meeting-rooms-card__price-list">
-							<span class="meeting-rooms-card__variant">Закрепленное рабочее место</span>
-							<span class="meeting-rooms-card__price">24 000 руб.</span>
-						</div>
-					</div>
-				</div>
-				<div class="meeting-rooms-card__timeline timeline">
-					<div class="timeline__labels">
-						<span class="timeline__label">00:00</span>
-						<span class="timeline__label">01:00</span>
-						<span class="timeline__label">02:00</span>
-						<span class="timeline__label">03:00</span>
-						<span class="timeline__label">04:00</span>
-						<span class="timeline__label">05:00</span>
-						<span class="timeline__label">06:00</span>
-						<span class="timeline__label">07:00</span>
-						<span class="timeline__label">08:00</span>
-						<span class="timeline__label">09:00</span>
-						<span class="timeline__label">10:00</span>
-						<span class="timeline__label">11:00</span>
-						<span class="timeline__label">12:00</span>
-						<span class="timeline__label">13:00</span>
-						<span class="timeline__label">14:00</span>
-						<span class="timeline__label">15:00</span>
-						<span class="timeline__label">16:00</span>
-						<span class="timeline__label">17:00</span>
-						<span class="timeline__label">18:00</span>
-						<span class="timeline__label">19:00</span>
-						<span class="timeline__label">20:00</span>
-						<span class="timeline__label">21:00</span>
-						<span class="timeline__label">22:00</span>
-						<span class="timeline__label">23:00</span>
-					</div>
-					<div class="timeline__sequence">
-						<span class="timeline__sequence-handle-start"></span>
-						<span class="timeline__sequence-handle-end"></span>
-					</div>
-					<div class="timeline__halves">
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half timeline__half_hold"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half timeline__half_hold"></span>
-						<span class="timeline__half timeline__half_hold"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-						<span class="timeline__half"></span>
-					</div>
-				</div>
-			</div>
+			<div class="meeting-rooms__cards"></div>
 		</div>
 		<div class="meeting-rooms__right">
-			<p class="meeting-rooms__hint">
-				Выберите локацию, дату, укажите необходимое кол-во человек, отметьте подходящее вам свободное.<br>Резиденты SOK могут забронировать переговорную по специальным ценам.
-			</p>
-			<div class="meeting-rooms__right-card right-card">
+			<p class="meeting-rooms__hint">Выберите локацию, дату, укажите необходимое кол-во человек, отметьте подходящее вам свободное.<br>Резиденты SOK могут забронировать переговорную по специальным ценам.</p>
+			<form action="/" method="POST" class="meeting-rooms__right-card right-card">
 				<h2 class="right-card__title">Бронирование</h2>
-				<div class="right-card__block">
-					<div class="right-card__field">
-						<span>Переговорная</span>
-						<span>Динамо</span>
-					</div>
-					<div class="right-card__field">
-						<span>Начало аренды</span>
-						<span>26 марта 2019, 18:00</span>
-					</div>
-					<div class="right-card__field">
-						<span>Окончание аренды</span>
-						<span>26 марта 2019, 18:00</span>
-					</div>
-				</div>
-				<div class="right-card__block">
-					<div class="right-card__field">
-						<span>Переговорная</span>
-						<span>Динамо</span>
-					</div>
-					<div class="right-card__field">
-						<span>Начало аренды</span>
-						<span>26 марта 2019, 18:00</span>
-					</div>
-					<div class="right-card__field">
-						<span>Окончание аренды</span>
-						<span>26 марта 2019, 18:00</span>
-					</div>
-				</div>
+
+				<div class="right-card__blocks"></div>
 				<div class="right-card__to-pay">
 					<span>К оплате</span>
-					<span>10 500 руб.</span>
+					<input type="hidden" name="full-price" />
+					<span></span>
 				</div>
-				<button class="btn gray-btn">Перейти к оформлению</button>
-			</div>
+				<button type="submit" class="btn gray-btn">Перейти к оформлению</button>
+			</form>
 		</div>
 	</section>
 	<!-- Popup -->
 	<div class="meeting-rooms-form-popup">
-		<div class="meeting-rooms-form-popup__bg"></div>
+		<div class="meeting-rooms-form-popup__bg js-tgl-meeting-popup"></div>
 		<div class="meeting-rooms-form-popup__wrap">
-			<buttom type="button" class="meeting-rooms-form-popup__close"></buttom>
+			<buttom type="button" class="meeting-rooms-form-popup__close js-tgl-meeting-popup"></buttom>
 			<form class="meeting-rooms-form">
 				<h2 class="meeting-rooms-form__title">Выбор времени и даты</h2>
-				<p class="meeting-rooms-form__desc">
-					Арендовать переговорную можно на полчаса и более. Вы можете указать несколько временных диапазонов.
-				</p>
+				<p class="meeting-rooms-form__desc">Арендовать переговорную можно на полчаса и более. Вы можете указать несколько временных диапазонов.</p>
 				<div class="meeting-rooms-form__settings-wrap">
 					<div class="meeting-rooms-form__settings form-settings">
-						<div class="select-negotiation__select form-wraper formselect-radio">
+						<div class="select-negotiation__select form-wraper formselect-radio meeting-rooms-form__people-count js-form-select">
 							<span class="form-wraper__label">Кол-во человек</span>
-							<div class="form-wraper__box formselect-radio__value form-box" title="4 человека">
-									<span>4 человека</span>
+							<div class="form-wraper__box formselect-radio__value form-box" title="до 3 человек">
+								<span>до 3 человек</span>
 							</div>
 							<button type="button" class="form-wraper__button formselect-radio__arrow">
 							</button>
-							<input type="hidden" name="room_category" class="form-wraper__input" value="7">
+							<input type="hidden" name="people_count" class="formselect-radio__input form-settings__people-count" value="3">
 							<ul class="formselect-radio__list">
 								<li class="formselect-radio__item">
-									<input type="radio" id="category-room-7" value="7" name="category-room">
-									<label for="category-room-7">10 человек</label>
+									<input type="radio" id="people-count-3" value="3" name="people-count">
+									<label for="people-count-3">до 3 человек</label>
 								</li>
 								<li class="formselect-radio__item">
-									<input type="radio" id="category-room-19" value="19" name="category-room">
-									<label for="category-room-19">20 человек</label>
+									<input type="radio" id="people-count-8" value="8" name="people-count">
+									<label for="people-count-8">до 8 человек</label>
 								</li>
 								<li class="formselect-radio__item">
-									<input type="radio" id="category-room-20" value="20" name="category-room">
-									<label for="category-room-20">30 человек</label>
-								</li>
-								<li class="formselect-radio__item">
-									<input type="radio" id="category-room-21" value="21" name="category-room">
-									<label for="category-room-21">40 человек</label>
-								</li>
-								<li class="formselect-radio__item">
-									<input type="radio" id="category-room-21" value="21" name="category-room">
-									<label for="category-room-21">50 человек</label>
-								</li>
-								<li class="formselect-radio__item">
-									<input type="radio" id="category-room-21" value="21" name="category-room">
-									<label for="category-room-21">60 человек</label>
-								</li>
-								<li class="formselect-radio__item">
-									<input type="radio" id="category-room-21" value="21" name="category-room">
-									<label for="category-room-21">100 человек</label>
-								</li>
-								<li class="formselect-radio__item">
-									<input type="radio" id="category-room-21" value="21" name="category-room">
-									<label for="category-room-21">140 человек</label>
+									<input type="radio" id="people-count-12" value="12" name="people-count">
+									<label for="people-count-12">до 12 человек</label>
 								</li>
 							</ul>
 						</div>
 					</div>
 					<div class="meeting-rooms-form__settings form-settings">
 						<label for="ww" class="form-settings__label">Количество часов</label>
-						<div class="form-settings__input-count">
-							<button class="form-settings__count-plus count-plus-minus" type="button">
-								<img src="img/input-minus.svg" alt="">
+						<div class="form-settings__input-count js-time-counter">
+							<button class="form-settings__count-minus count-plus-minus" type="button">
+								<img src="img/input-minus.svg">
 							</button>
 							<input type="number" class="form-settings__hour form-settings-input" id="ww" value="1">
-							<button class="form-settings__count-minus count-plus-minus" type="button">
-								<img src="img/input-plus.svg" alt="">
+							<button class="form-settings__count-plus count-plus-minus" type="button">
+								<img src="img/input-plus.svg">
 							</button>
 						</div>
 					</div>
 				</div>
+				<input type="hidden" class="form-settings__time" value="0">
+				<input type="hidden" class="form-settings__edit-id" value="">
+				<input type="hidden" class="form-settings__timeline-id" value="">
+				<input type="hidden" class="form-settings__prev-state" value="">
 				<div class="form-settings__btn-block">
-					<button class="form-settings__btn btn gray-btn">Отменить</button>
-					<button class="form-settings__btn btn gray-btn">Все правильно</button>
+					<button type="clear" class="form-settings__btn btn gray-btn js-tgl-meeting-popup">Отменить</button>
+					<button type="submit" class="form-settings__btn btn gray-btn">Все правильно</button>
 				</div>
 			</form>
 		</div>
