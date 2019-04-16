@@ -121,44 +121,44 @@ $(function() {
 
 	var bookedMeetingRoom = [
 		{
-			date: '1555275600000',
-			locationId: 'dinamo',
-			meetingRoomId: 0,
-			time: [
+			'date': '1555275600000',
+			'locationId': 'dinamo',
+			'meetingRoomId': 0,
+			'time': [
 				{
-					from: 3,
-					to: 5
+					'from': 3,
+					'to': 5
 				},
 				{
-					from: 8,
-					to: 9
+					'from': 8,
+					'to': 9
 				},
 				{
-					from: 12,
-					to: 16
+					'from': 12,
+					'to': 16
 				}
 			]
 		},
 		{
-			date: '1555275600000',
-			locationId: 'dinamo',
-			meetingRoomId: 2,
-			time: [
+			'date': '1555275600000',
+			'locationId': 'dinamo',
+			'meetingRoomId': 2,
+			'time': [
 				{
-					from: 3,
-					to: 5
+					'from': 3,
+					'to': 5
 				},
 				{
-					from: 7,
-					to: 8
+					'from': 7,
+					'to': 8
 				},
 				{
-					from: 12,
-					to: 16
+					'from': 12,
+					'to': 16
 				}
 			]
 		}
-	]
+	];
 	
 	// Компонента страницы
 	var BookingMeetingRoom = window.Timeline || {};
@@ -168,6 +168,7 @@ $(function() {
 			var _ = this;
 
 			_.locationData = settings.locationData;
+			_.getBookedURL = settings.bookedUrl;
 
 			_.$meetingRoomCards = $('.meeting-rooms__cards');
 			_.$meetingRoomHint = $('.meeting-rooms__hint');
@@ -220,6 +221,7 @@ $(function() {
 
 		// setInterval(function() {
 		// 	_.updateBookedMeetingRoom();
+		//	_.renderMeetingRoomCards();
 		// }, 60000);
 
 		_.$meetingRoomRightCard.css('display', 'none');
@@ -305,7 +307,11 @@ $(function() {
 	BookingMeetingRoom.prototype.getBookedMeetingRoom = function() {
 		var _ = this;
 
-		return bookedMeetingRoom;
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET', _.getBookedURL, false);
+		xhr.send();
+
+		return xhr.status == 200 ? JSON.parse(xhr.responseText) : [];
 	}
 
 	// Рендер всех карточек переговорок
@@ -1109,6 +1115,7 @@ $(function() {
 		});
 	
 		new BookingMeetingRoom({
+			bookedUrl: 'http://www.mocky.io/v2/5cb5919f3300002e165d7bef',
 			locationData: locationData
 		});
 	});
