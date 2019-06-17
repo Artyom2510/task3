@@ -155,6 +155,7 @@ input[type="text"] {
 	white-space: nowrap;
 	-o-text-overflow: ellipsis;
 	text-overflow: ellipsis;
+	cursor: pointer;
 }
 
 .formselect-radio__list {

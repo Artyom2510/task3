@@ -1118,6 +1118,7 @@ $(function() {
 			bookedUrl: 'http://www.mocky.io/v2/5cb5919f3300002e165d7bef',
 			locationData: locationData
 		});
+		$('.formselect-radio').formfieldSelect();
 	});
 
 });
