@@ -116,7 +116,8 @@ input
 		font-size: 36px
 		line-height: 38px
 
-.formselect-radio
+.formselect-radio,
+.form-multiselect
 	position: relative
 	z-index: 1
 	&__value
@@ -138,14 +139,20 @@ input
 		padding: 8px 0px
 		background-color: #fff
 	&__item
+		position: relative
 		width: 100%
 		list-style: none
 		&:hover,
 		&:focus
 			background-color: #e8e8e8
-		input[type="radio"]
+		input[type="radio"],
+		input[type="checkbox"]
 			display: none
-		label
+		input:checked + label
+			color: green
+		label,
+		a
+			position: relative
 			display: block
 			width: 100%
 			margin: 0
@@ -155,6 +162,39 @@ input
 			font-weight: 600
 			cursor: pointer
 			box-sizing: border-box
+		a
+			text-decoration: none
+			&.active
+				color: green
+			&:hover, &:focus
+				text-decoration: none
+		&_mark
+			label
+				padding-left: 30px
+				&::before,
+				&::after
+					content: ''
+					position: absolute
+					border-radius: 50%
+				&::before
+					left: 5px
+					top: 7px
+					display: block
+					width: 20px
+					height: 20px
+					box-sizing: border-box
+					border: 2px solid green
+				&::after
+					left: 10px
+					top: 12px
+					display: none
+					width: 10px
+					height: 10px
+					background-color: green
+			input:checked + label
+				color: green
+				&::after
+					display: block
 	&.open
 		z-index: 15
 		.formselect-radio__list
@@ -217,6 +257,7 @@ input
 	display: flex
 	justify-content: center
 	align-items: center
+	height: 500px
 	padding: 50px 20px
 	background-color: #d5e0fb
 	&__select

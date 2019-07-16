@@ -144,12 +144,14 @@ input[type="text"] {
 	}
 }
 
-.formselect-radio {
+.formselect-radio,
+.form-multiselect {
 	position: relative;
 	z-index: 1;
 }
 
-.formselect-radio__value {
+.formselect-radio__value,
+  .form-multiselect__value {
 	width: 100%;
 	overflow: hidden;
 	white-space: nowrap;
@@ -158,7 +160,8 @@ input[type="text"] {
 	cursor: pointer;
 }
 
-.formselect-radio__list {
+.formselect-radio__list,
+  .form-multiselect__list {
 	position: absolute;
 	z-index: 1;
 	display: none;
@@ -173,20 +176,36 @@ input[type="text"] {
 	background-color: #fff;
 }
 
-.formselect-radio__item {
+.formselect-radio__item,
+  .form-multiselect__item {
+	position: relative;
 	width: 100%;
 	list-style: none;
 }
 
-.formselect-radio__item:hover, .formselect-radio__item:focus {
+.formselect-radio__item:hover, .formselect-radio__item:focus,
+    .form-multiselect__item:hover,
+    .form-multiselect__item:focus {
 	background-color: #e8e8e8;
 }
 
-.formselect-radio__item input[type="radio"] {
+.formselect-radio__item input[type="radio"],
+    .formselect-radio__item input[type="checkbox"],
+    .form-multiselect__item input[type="radio"],
+    .form-multiselect__item input[type="checkbox"] {
 	display: none;
 }
 
-.formselect-radio__item label {
+.formselect-radio__item input:checked + label,
+    .form-multiselect__item input:checked + label {
+	color: green;
+}
+
+.formselect-radio__item label,
+    .formselect-radio__item a,
+    .form-multiselect__item label,
+    .form-multiselect__item a {
+	position: relative;
 	display: block;
 	width: 100%;
 	margin: 0;
@@ -199,11 +218,75 @@ input[type="text"] {
 	box-sizing: border-box;
 }
 
-.formselect-radio.open {
+.formselect-radio__item a,
+    .form-multiselect__item a {
+	text-decoration: none;
+}
+
+.formselect-radio__item a.active,
+      .form-multiselect__item a.active {
+	color: green;
+}
+
+.formselect-radio__item a:hover, .formselect-radio__item a:focus,
+      .form-multiselect__item a:hover,
+      .form-multiselect__item a:focus {
+	text-decoration: none;
+}
+
+.formselect-radio__item_mark label,
+    .form-multiselect__item_mark label {
+	padding-left: 30px;
+}
+
+.formselect-radio__item_mark label::before, .formselect-radio__item_mark label::after,
+      .form-multiselect__item_mark label::before,
+      .form-multiselect__item_mark label::after {
+	content: '';
+	position: absolute;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
+}
+
+.formselect-radio__item_mark label::before,
+      .form-multiselect__item_mark label::before {
+	left: 5px;
+	top: 7px;
+	display: block;
+	width: 20px;
+	height: 20px;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	border: 2px solid green;
+}
+
+.formselect-radio__item_mark label::after,
+      .form-multiselect__item_mark label::after {
+	left: 10px;
+	top: 12px;
+	display: none;
+	width: 10px;
+	height: 10px;
+	background-color: green;
+}
+
+.formselect-radio__item_mark input:checked + label,
+    .form-multiselect__item_mark input:checked + label {
+	color: green;
+}
+
+.formselect-radio__item_mark input:checked + label::after,
+      .form-multiselect__item_mark input:checked + label::after {
+	display: block;
+}
+
+.formselect-radio.open,
+  .form-multiselect.open {
 	z-index: 15;
 }
 
-.formselect-radio.open .formselect-radio__list {
+.formselect-radio.open .formselect-radio__list,
+    .form-multiselect.open .formselect-radio__list {
 	display: block;
 }
 
@@ -287,6 +370,7 @@ input[type="text"] {
 	-webkit-align-items: center;
 	-ms-flex-align: center;
 	align-items: center;
+	height: 500px;
 	padding: 50px 20px;
 	background-color: #d5e0fb;
 }

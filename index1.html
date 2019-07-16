@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="utf-8">
+
+	<title>Sok</title>
+	<meta name="description" content="">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta property="og:image" content="path/to/image.jpg">
+
+	<!-- <link rel="shortcut icon" href="img/favicon/favicon.png" type="image/png">
+	<link rel="apple-touch-icon" href="img/favicon/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="img/favicon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="img/favicon/apple-touch-icon-114x114.png"> -->
+
+	<!-- Цвет мобильного браузера -->
+	<!--	<meta name="theme-color" content="#000">-->
+	<!--	<meta name="msapplication-navbutton-color" content="#000">-->
+	<!--	<meta name="apple-mobile-web-app-status-bar-style" content="#000">-->
+	<link rel="stylesheet" href="css/jquery-ui.min.css">
+	<link rel="stylesheet" href="css/jquery-ui.structure.min.css">
+	<link rel="stylesheet" href="css/jquery-ui.theme.min.css">
+	<link rel="stylesheet" href="css/main.css">
+	
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	<script src="js/datepicker.js"></script>
+	<script src="js/switchPopup.js"></script>
+	<script src="js/formselect.js"></script>
+	<script src="js/commonForSelect.js"></script>
+	<script src="js/formfieldCounter.js"></script>
+	<script src="js/common.js"></script>
+</head>
+
+<body>
+	<!-- <section class="rent-negotiation">
+		<img src="img/rent-negotiation.jpg" alt="">
+		<h1 class="rent-negotiation__title rent-negotiation-title">Арендуйте переговорную комнату в SOK</h1>
+	</section> -->
+	<section class="select-negotiation">
+		<div class="select-negotiation__select select-negotiation__select_meeting-room form-wraper formselect-radio">
+			<label for="" class="form-wraper__label">Переговорная</label>
+			<div class="form-wraper__box formselect-radio__value form-box" title="Динамо">
+				<span>Динамо</span>
+			</div>
+			<button type="button" class="form-wraper__button formselect-radio__arrow">
+			</button>
+			<input type="hidden" name="meeting_room" class="formselect-radio__input form-wraper__input bmr-filter-prop" value="dinamo">
+			<ul class="formselect-radio__list">
+				<li class="formselect-radio__item">
+					<input type="radio" id="meeting-room-1" value="dinamo" name="meeting-room">
+					<label for="meeting-room-1">Динамо</label>
+				</li>
+				<li class="formselect-radio__item">
+					<input type="radio" id="meeting-room-2" value="2" name="meeting-room">
+					<label for="meeting-room-2">Переговорная 2</label>
+				</li>
+				<li class="formselect-radio__item">
+					<input type="radio" id="meeting-room-3" value="3" name="meeting-room">
+					<label for="meeting-room-3">Переговорная 3</label>
+				</li>
+				<li class="formselect-radio__item">
+					<input type="radio" id="meeting-room-4" value="4" name="meeting-room" checked>
+					<label for="meeting-room-4">Переговорная 4</label>
+				</li>
+			</ul>
+		</div>
+		<div class="select-negotiation__select select-negotiation__select_date form-wraper">
+			<label for="datepicker" class="form-wraper__label">Дата</label>
+			<div class="form-wraper__box formselect-radio__value form-box">
+				<input type="text" class="datepicker bmr-filter-prop" name="date" id="datepicker" autocomplete="off" readonly>
+			</div>
+			<label for="datepicker" type="button" class="form-wraper__calendar">
+				<img src="img/calendar.svg">
+			</label>
+		</div>
+		<div class="select-negotiation__select select-negotiation__select_amount-people form-wraper formselect-radio">
+			<label for="" class="form-wraper__label">Кол-во человек</label>
+			<div class="form-wraper__box formselect-radio__value form-box" title="10 человек">
+				<span>до 3 человек</span>
+			</div>
+			<button type="button" class="form-wraper__button formselect-radio__arrow">
+			</button>
+			<input type="hidden" name="amount_people" class="formselect-radio__input form-wraper__input bmr-filter-prop" value="3">
+			<ul class="formselect-radio__list">
+				<li class="formselect-radio__item">
+					<input type="radio" id="amount-people-3" value="3" name="amount-people">
+					<label for="amount-people-3">до 3 человек</label>
+				</li>
+				<li class="formselect-radio__item">
+					<input type="radio" id="amount-people-8" value="8" name="amount-people" checked>
+					<label for="amount-people-8">до 8 человек</label>
+				</li>
+				<li class="formselect-radio__item">
+					<input type="radio" id="amount-people-12" value="12" name="amount-people">
+					<label for="amount-people-12">до 12 человек</label>
+				</li>
+			</ul>
+		</div>
+	</section>
+	<!-- <section class="meeting-rooms">
+		<div class="meeting-rooms__left">
+			<div class="meeting-rooms__title rent-negotiation-title">Переговорные комнаты</div>
+			<div class="meeting-rooms__cards"></div>
+		</div>
+		<div class="meeting-rooms__right">
+			<p class="meeting-rooms__hint">Выберите локацию, дату, укажите необходимое кол-во человек, отметьте подходящее вам свободное.<br>Резиденты SOK могут забронировать переговорную по специальным ценам.</p>
+			<form action="/" method="POST" class="meeting-rooms__right-card right-card">
+				<h2 class="right-card__title">Бронирование</h2>
+
+				<div class="right-card__blocks"></div>
+				<div class="right-card__to-pay">
+					<span>К оплате</span>
+					<input type="hidden" name="full-price" />
+					<span></span>
+				</div>
+				<button type="submit" class="btn gray-btn">Перейти к оформлению</button>
+			</form>
+		</div>
+	</section> -->
+	<!-- Popup -->
+	<!-- <div class="meeting-rooms-form-popup">
+		<div class="meeting-rooms-form-popup__bg js-tgl-meeting-popup"></div>
+		<div class="meeting-rooms-form-popup__wrap">
+			<buttom type="button" class="meeting-rooms-form-popup__close js-tgl-meeting-popup"></buttom>
+			<form class="meeting-rooms-form">
+				<h2 class="meeting-rooms-form__title">Выбор времени и даты</h2>
+				<p class="meeting-rooms-form__desc">Арендовать переговорную можно на полчаса и более. Вы можете указать несколько временных диапазонов.</p>
+				<div class="meeting-rooms-form__settings-wrap">
+					<div class="meeting-rooms-form__settings form-settings">
+						<div class="select-negotiation__select form-wraper formselect-radio meeting-rooms-form__people-count">
+							<span class="form-wraper__label">Кол-во человек</span>
+							<div class="form-wraper__box formselect-radio__value form-box" title="до 3 человек">
+								<span>до 3 человек</span>
+							</div>
+							<button type="button" class="form-wraper__button formselect-radio__arrow">
+							</button>
+							<input type="hidden" name="people_count" class="formselect-radio__input form-settings__people-count" value="3">
+							<ul class="formselect-radio__list">
+								<li class="formselect-radio__item">
+									<input type="radio" id="people-count-3" value="3" name="people-count">
+									<label for="people-count-3">до 3 человек</label>
+								</li>
+								<li class="formselect-radio__item">
+									<input type="radio" id="people-count-8" value="8" name="people-count">
+									<label for="people-count-8">до 8 человек</label>
+								</li>
+								<li class="formselect-radio__item">
+									<input type="radio" id="people-count-12" value="12" name="people-count">
+									<label for="people-count-12">до 12 человек</label>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="meeting-rooms-form__settings form-settings">
+						<label for="ww" class="form-settings__label">Количество часов</label>
+						<div class="form-settings__input-count js-time-counter">
+							<button class="form-settings__count-minus count-plus-minus" type="button">
+								<img src="img/input-minus.svg">
+							</button>
+							<input type="number" class="form-settings__hour form-settings-input" id="ww" value="1">
+							<button class="form-settings__count-plus count-plus-minus" type="button">
+								<img src="img/input-plus.svg">
+							</button>
+						</div>
+					</div>
+				</div>
+				<input type="hidden" class="form-settings__time" value="0">
+				<input type="hidden" class="form-settings__edit-id" value="">
+				<input type="hidden" class="form-settings__timeline-id" value="">
+				<input type="hidden" class="form-settings__prev-state" value="">
+				<div class="form-settings__btn-block">
+					<button type="clear" class="form-settings__btn btn gray-btn js-tgl-meeting-popup">Отменить</button>
+					<button type="submit" class="form-settings__btn btn gray-btn">Все правильно</button>
+				</div>
+			</form>
+		</div>
+	</div> -->
+</body>
+</html>
